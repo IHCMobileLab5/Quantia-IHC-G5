@@ -142,10 +142,10 @@ function setupTogglePassword() {
 
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.textContent = '🙈';
+                icon.textContent = 'Ocultar';
             } else {
                 input.type = 'password';
-                icon.textContent = '👁️';
+                icon.textContent = 'Mostrar';
             }
         });
     });
@@ -175,9 +175,9 @@ function setupSignupForm(supabaseClient) {
         const { error } = await supabaseClient.auth.signUp({ email, password });
 
         if (error) {
-            alert('❌ Error al registrarse: ' + error.message);
+            alert('Error al registrarse: ' + error.message);
         } else {
-            alert('✅ Registro exitoso. Revisa tu correo para confirmar la cuenta.');
+            alert('Registro exitoso. Revisa tu correo para confirmar la cuenta.');
         }
     });
 }
@@ -198,7 +198,7 @@ function setupLoginForm(supabaseClient) {
         });
 
         if (error) {
-            alert('❌ Error al iniciar sesión: ' + error.message);
+            alert('Error al iniciar sesión: ' + error.message);
         } else {
             window.location.href = '/profile.html';
         }
@@ -224,7 +224,7 @@ function setupOAuthButtons(supabaseClient) {
                 options: { redirectTo: '/profile.html' }
             });
             if (error) {
-                alert(`❌ Error al iniciar con ${provider}: ` + error.message);
+                alert(`Error al iniciar con ${provider}: ` + error.message);
             }
         });
     });
@@ -310,6 +310,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavAndHero();
     setupSupabaseFeatures();
 });
-
-
-
