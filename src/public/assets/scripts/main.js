@@ -230,3 +230,80 @@ function setupOAuthButtons(supabaseClient) {
     });
 }
 
+function setupProfilePage(supabaseClient) {
+    const userName = document.getElementById('user-name');
+    const userEmail = document.getElementById('user-email');
+    const deleteBtn = document.getElementById('delete-btn');
+    const signoutBtn = document.getElementById('signout-btn');
+
+    if (!userName && !userEmail && !deleteBtn && !signoutBtn) return;
+
+    async function loadUser() {
+        const { data, error } = await supabaseClient.auth.getUser();
+        if (error) {
+            console.error(error);
+            alert('Error obteniendo el usuario.');
+            return;
+        }
+
+        const user = data.user;
+        if (!user) {
+            alert('No has iniciado sesión.');
+            window.location.href = 'signup.html';
+            return;
+        }
+
+        if (userName) {
+            userName.textContent = user.user_metadata?.full_name || 'Sin nombre';
+        }
+        if (userEmail) {
+            userEmail.textContent = user.email;
+        }
+    }
+
+    loadUser();
+
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', async () => {
+            const { data, error } = await supabaseClient.auth.getUser();
+            if (error) {
+                alert('Error obteniendo el usuario actual.');
+                return;
+            }
+
+            const user = data.user;
+            if (!user) {
+                alert('Inicia sesión primero.');
+                return;
+            }
+
+            if (!confirm('¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer.')) {
+                return;
+            }
+
+            try {
+                await fetch('/delete-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: user.id })
+                });
+
+                alert('Usuario y datos eliminados.');
+                await supabaseClient.auth.signOut();
+                window.location.href = 'signup.html';
+            } catch (err) {
+                console.error(err);
+                alert('Error eliminando la cuenta.');
+            }
+        });
+    }
+
+    if (signoutBtn) {
+        signoutBtn.addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'signup.html';
+        });
+    }
+}
+
+
