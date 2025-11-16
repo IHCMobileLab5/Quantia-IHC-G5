@@ -114,3 +114,42 @@ function setupNavAndHero() {
         aboutCards.forEach(card => card.classList.add('show'));
     }
 }
+// FEAT 2: configuración supabase + toggle password
+function setupSupabaseFeatures() {
+    if (typeof supabase === 'undefined') {
+        console.warn('Supabase SDK no está cargado; se deshabilitan las funciones de auth.');
+        return;
+    }
+
+    const SUPABASE_URL = 'https://trwfkxsvzhhgibkwxjpl.supabase.co';
+    const SUPABASE_ANON_KEY = 'TU_PUBLIC_ANON_KEY_AQUI';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    setupTogglePassword();
+    setupAuthRedirect(supabaseClient);
+    setupSignupForm(supabaseClient);
+    setupLoginForm(supabaseClient);
+    setupOAuthButtons(supabaseClient);
+    setupProfilePage(supabaseClient);
+}
+
+function setupTogglePassword() {
+    const toggles = document.querySelectorAll('.toggle-password');
+    if (!toggles.length) return;
+
+    toggles.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const targetId = icon.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            if (!input) return;
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                icon.textContent = '👁️';
+            }
+        });
+    });
+}
