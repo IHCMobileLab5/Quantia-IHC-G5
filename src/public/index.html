@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantia - Invierte con confianza</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
 
@@ -48,7 +48,7 @@
         </div>
     </section>
 
-
+    <!-- SOBRE NOSOTROS -->
     <section id="nosotros" class="about">
         <h2 class="about-title">Sobre nosotros</h2>
 
@@ -58,7 +58,7 @@
         </p>
 
         <div class="about-grid">
-
+            <!-- Misión -->
             <article class="about-card">
                 <span class="about-tag about-tag-mision">Misión</span>
                 <p class="about-text">
@@ -68,7 +68,7 @@
                 <img src="assets/images/mision.png" alt="Icono misión" class="about-icon">
             </article>
 
-
+            <!-- Visión -->
             <article class="about-card">
                 <span class="about-tag about-tag-vision">Visión</span>
                 <p class="about-text">
@@ -78,7 +78,7 @@
                 <img src="assets/images/vision.png" alt="Icono visión" class="about-icon">
             </article>
 
-
+            <!-- Valores -->
             <article class="about-card">
                 <span class="about-tag about-tag-valores">Valores</span>
                 <p class="about-text">
@@ -97,7 +97,37 @@
             Porque no somos solo otra app de inversión. Somos una plataforma diseñada para quienes quieren empezar —o mejorar—
             su camino financiero con claridad, seguridad y acompañamiento real.
         </p>
+    </section>
 
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact">
+        <h2 class="contact-title">¿Tienes preguntas o necesitas ayuda?</h2>
+
+        <div class="contact-wrapper">
+            <form class="contact-card">
+                <div class="contact-row">
+                    <label for="nombre">Nombres</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingresa tus nombres">
+                </div>
+
+                <div class="contact-row">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo">
+                </div>
+
+                <div class="contact-row">
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="¿Sobre qué quieres hablar?">
+                </div>
+
+                <div class="contact-row">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
+                </div>
+
+                <button type="submit" class="contact-btn">Enviar</button>
+            </form>
+        </div>
     </section>
 </main>
 
