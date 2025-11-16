@@ -43,7 +43,6 @@ function setupNavAndHero() {
         overlay.addEventListener('click', closeMenu);
     }
 
-    // Scroll suave al hacer clic en los links del nav
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
@@ -70,7 +69,6 @@ function setupNavAndHero() {
         });
     });
 
-    // Cambiar link activo según scroll
     function updateActiveLinkOnScroll() {
         const headerHeight = header ? header.offsetHeight : 0;
         const scrollPos = window.scrollY + headerHeight + 10;
@@ -98,7 +96,6 @@ function setupNavAndHero() {
     window.addEventListener('scroll', updateActiveLinkOnScroll);
     updateActiveLinkOnScroll();
 
-    // Animación tarjetas "Misión / Visión / Valores"
     if ('IntersectionObserver' in window && aboutCards.length > 0) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
@@ -114,7 +111,7 @@ function setupNavAndHero() {
         aboutCards.forEach(card => card.classList.add('show'));
     }
 }
-// FEAT 2: configuración supabase + toggle password
+
 function setupSupabaseFeatures() {
     if (typeof supabase === 'undefined') {
         console.warn('Supabase SDK no está cargado; se deshabilitan las funciones de auth.');
