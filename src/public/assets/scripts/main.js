@@ -150,3 +150,36 @@ function setupTogglePassword() {
         });
     });
 }
+
+function setupAuthRedirect(supabaseClient) {
+    const isAuthPage =
+        document.querySelector('#signup-form') ||
+        document.querySelector('#login-form');
+
+    if (!isAuthPage) return;
+
+    supabaseClient.auth.getUser().then(({ data: { user } }) => {
+        if (user) window.location.href = '/profile.html';
+    });
+}
+
+function setupSignupForm(supabaseClient) {
+    const form = document.querySelector('#signup-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.querySelector('#signup-email').value;
+        const password = document.querySelector('#signup-password').value;
+
+        const { error } = await supabaseClient.auth.signUp({ email, password });
+
+        if (error) {
+            alert('❌ Error al registrarse: ' + error.message);
+        } else {
+            alert('✅ Registro exitoso. Revisa tu correo para confirmar la cuenta.');
+        }
+    });
+}
+
+
