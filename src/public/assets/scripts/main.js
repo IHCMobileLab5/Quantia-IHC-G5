@@ -306,4 +306,10 @@ function setupProfilePage(supabaseClient) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    setupNavAndHero();
+    setupSupabaseFeatures();
+});
+
+
 
