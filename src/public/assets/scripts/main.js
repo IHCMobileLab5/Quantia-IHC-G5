@@ -183,3 +183,25 @@ function setupSignupForm(supabaseClient) {
 }
 
 
+function setupLoginForm(supabaseClient) {
+    const form = document.querySelector('#login-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.querySelector('#login-email').value;
+        const password = document.querySelector('#login-password').value;
+
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) {
+            alert('❌ Error al iniciar sesión: ' + error.message);
+        } else {
+            window.location.href = '/profile.html';
+        }
+    });
+}
+
