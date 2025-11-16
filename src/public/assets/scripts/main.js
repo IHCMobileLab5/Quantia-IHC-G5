@@ -43,7 +43,6 @@ function setupNavAndHero() {
         overlay.addEventListener('click', closeMenu);
     }
 
-    // Scroll suave al hacer clic en los links del nav
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
@@ -70,7 +69,6 @@ function setupNavAndHero() {
         });
     });
 
-    // Cambiar link activo según scroll
     function updateActiveLinkOnScroll() {
         const headerHeight = header ? header.offsetHeight : 0;
         const scrollPos = window.scrollY + headerHeight + 10;
@@ -98,7 +96,6 @@ function setupNavAndHero() {
     window.addEventListener('scroll', updateActiveLinkOnScroll);
     updateActiveLinkOnScroll();
 
-    // Animación tarjetas "Misión / Visión / Valores"
     if ('IntersectionObserver' in window && aboutCards.length > 0) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
@@ -114,3 +111,75 @@ function setupNavAndHero() {
         aboutCards.forEach(card => card.classList.add('show'));
     }
 }
+
+function setupSupabaseFeatures() {
+    if (typeof supabase === 'undefined') {
+        console.warn('Supabase SDK no está cargado; se deshabilitan las funciones de auth.');
+        return;
+    }
+
+    const SUPABASE_URL = 'https://trwfkxsvzhhgibkwxjpl.supabase.co';
+    const SUPABASE_ANON_KEY = 'TU_PUBLIC_ANON_KEY_AQUI';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    setupTogglePassword();
+    setupAuthRedirect(supabaseClient);
+    setupSignupForm(supabaseClient);
+    setupLoginForm(supabaseClient);
+    setupOAuthButtons(supabaseClient);
+    setupProfilePage(supabaseClient);
+}
+
+function setupTogglePassword() {
+    const toggles = document.querySelectorAll('.toggle-password');
+    if (!toggles.length) return;
+
+    toggles.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const targetId = icon.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            if (!input) return;
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                icon.textContent = '👁️';
+            }
+        });
+    });
+}
+
+function setupAuthRedirect(supabaseClient) {
+    const isAuthPage =
+        document.querySelector('#signup-form') ||
+        document.querySelector('#login-form');
+
+    if (!isAuthPage) return;
+
+    supabaseClient.auth.getUser().then(({ data: { user } }) => {
+        if (user) window.location.href = '/profile.html';
+    });
+}
+
+function setupSignupForm(supabaseClient) {
+    const form = document.querySelector('#signup-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.querySelector('#signup-email').value;
+        const password = document.querySelector('#signup-password').value;
+
+        const { error } = await supabaseClient.auth.signUp({ email, password });
+
+        if (error) {
+            alert('❌ Error al registrarse: ' + error.message);
+        } else {
+            alert('✅ Registro exitoso. Revisa tu correo para confirmar la cuenta.');
+        }
+    });
+}
+
+
