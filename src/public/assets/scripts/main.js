@@ -205,3 +205,28 @@ function setupLoginForm(supabaseClient) {
     });
 }
 
+
+function setupOAuthButtons(supabaseClient) {
+    const providers = [
+        { selector: '.btn-google', provider: 'google' },
+        { selector: '.btn-facebook', provider: 'facebook' },
+        { selector: '.btn-linkedin', provider: 'linkedin_oidc' }
+    ];
+
+    providers.forEach(({ selector, provider }) => {
+        const btn = document.querySelector(selector);
+        if (!btn) return;
+
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const { error } = await supabaseClient.auth.signInWithOAuth({
+                provider,
+                options: { redirectTo: '/profile.html' }
+            });
+            if (error) {
+                alert(`❌ Error al iniciar con ${provider}: ` + error.message);
+            }
+        });
+    });
+}
+
