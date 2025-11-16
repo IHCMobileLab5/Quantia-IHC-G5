@@ -19,6 +19,7 @@ function setupNavAndHero() {
         }
     }
 
+
     function closeMenu() {
         nav.classList.remove('open');
         if (overlay) overlay.classList.remove('active');
