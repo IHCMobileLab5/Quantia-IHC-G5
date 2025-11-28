@@ -976,3 +976,237 @@ body{
         padding: 20px;
     }
 }
+
+/* ===== Reset mínimo ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+    --brand: #2971B8;
+    --accent: #E69548;
+    --text: #0f172a;
+    --muted: #6b7280;
+    --surface: #ffffff;
+    --field: #f3f4f6;
+    --shadow: 0 10px 26px rgba(0,0,0,.12);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+html, body { height: 100%; }
+body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Poppins", sans-serif;
+    color: var(--text);
+    /* fondo suave tipo el mockup */
+    background: radial-gradient(1200px 600px at 15% 0%, #cfe9e6 0%, #e8f3f1 45%, #f7fbfb 100%);
+}
+
+/* ===== Decoración moneda ===== */
+.coin-deco{
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 200px;
+    max-width: 28vw;
+    user-select: none;
+    pointer-events: none;
+    opacity: .9;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,.12));
+}
+
+/* ===== Layout ===== */
+.login-layout{
+    min-height: 100dvh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 56px 24px;
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* ===== Tarjeta de formulario ===== */
+.auth-card{
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 28px 28px 24px;
+}
+.auth-title{
+    font-size: clamp(22px, 2.8vw, 28px);
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.auth-form{ display: flex; flex-direction: column; gap: 14px; }
+
+.field{ display: flex; flex-direction: column; gap: 6px; }
+.label{ font-size: 14px; color: #374151; }
+
+input[type="email"],
+input[type="password"]{
+    width: 100%;
+    background: var(--field);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+input[type="email"]:focus,
+input[type="password"]:focus{
+    border-color: rgba(41,113,184,.45);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(41,113,184,.12);
+}
+
+.form-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2px;
+}
+.form-row--sm{ margin-top: 4px; }
+
+.checkbox{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #374151;
+}
+.checkbox input{ width: 16px; height: 16px; }
+
+.link{
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 14px;
+}
+.link:hover{ text-decoration: underline; }
+
+/* Botones principales */
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border-radius: 999px;
+    padding: 0 22px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn-primary{
+    background: var(--brand);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(41,113,184,.25);
+}
+.btn-primary:hover{ transform: translateY(-1px); }
+
+.btn-outline{
+    background: #fff;
+    color: var(--text);
+    border: 1px solid #e5e7eb;
+}
+.btn-outline:hover{
+    border-color: #d1d5db;
+    box-shadow: 0 6px 14px rgba(0,0,0,.06);
+}
+
+/* Separador */
+.divider{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #6b7280;
+    font-size: 13px;
+    margin: 8px 0;
+}
+.divider::before,
+.divider::after{
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #e5e7eb;
+}
+
+/* Chips inferiores */
+.actions-row{ display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+.chip{
+    height: 36px;
+    padding: 0 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+.chip-accent{ background: var(--accent); color: #fff; }
+.chip-muted{ background: #f3f4f6; color: #374151; }
+.helper{
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 6px;
+}
+
+/* ===== Tarjeta de marca (logo) ===== */
+.brand-card{
+    display: grid;
+    place-items: center;
+}
+.brand-card__inner{
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    width: min(100%, 640px);
+    padding: clamp(28px, 4.8vw, 44px);
+    text-align: center;
+}
+.brand-logo{
+    width: clamp(120px, 18vw, 210px);
+    height: auto;
+    display: block;
+    margin: 0 auto 16px;
+}
+.brand-name{
+    font-size: clamp(28px, 5vw, 44px);
+    letter-spacing: .06em;
+    color: #123555;
+    font-weight: 800;
+}
+
+/* ===== Responsivo ===== */
+
+/* <= 1100px: reduce huecos */
+@media (max-width: 1100px){
+    .login-layout{
+        grid-template-columns: 480px 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+}
+
+/* <= 900px: apilar y centrar */
+@media (max-width: 900px){
+    .login-layout{
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .brand-card{ order: 2; }
+    .auth-card{ order: 1; }
+    .brand-card__inner{ width: 100%; }
+    .coin-deco{ width: 150px; }
+}
+
+/* <= 480px: compactar más */
+@media (max-width: 480px){
+    .auth-card{ padding: 22px 18px 18px; border-radius: 16px; }
+    .brand-card__inner{ border-radius: 16px; }
+    .coin-deco{ width: 120px; }
+}
