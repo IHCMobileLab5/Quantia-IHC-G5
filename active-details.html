@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Activo</title>
+    <link rel="stylesheet" href="src/public/assets/styles/active-details.css">
+</head>
+<body>
+<div class="container">
+    <img src="src/public/assets/images/img.png" alt="Sun decoration" class="sun-decoration">
+
+    <header>
+        <div class="back-arrow" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1>DETALLE DE ACTIVO</h1>
+    </header>
+
+    <div class="chart-card">
+        <div class="chart-header">
+            <div class="time-selector">
+                <button class="time-btn active" onclick="changeTimeFrame('1H')">1H</button>
+                <button class="time-btn" onclick="changeTimeFrame('1D')">1D</button>
+                <button class="time-btn" onclick="changeTimeFrame('1W')">1W</button>
+            </div>
+            <div class="price-display">
+                    <span class="bid-ask">
+                        <span id="bid-indicator">Bid</span> Ask
+                    </span>
+                <span class="price" id="current-price">101.34</span>
+            </div>
+        </div>
+
+        <div class="chart-area">
+            <svg class="chart-line" viewBox="0 0 600 200" preserveAspectRatio="none">
+                <polyline
+                        id="chart-polyline"
+                        fill="none"
+                        stroke="#3b5f9f"
+                        stroke-width="3"
+                        points="0,120 50,110 100,90 150,100 200,70 250,40 300,80 350,75 400,85 450,80 500,70 550,60 600,80"
+                />
+            </svg>
+        </div>
+
+        <div class="chart-controls">
+            <div class="chart-icon" onclick="changeChartType('candlestick')" title="Velas">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <line x1="4" y1="4" x2="4" y2="20"></line>
+                    <line x1="4" y1="8" x2="8" y2="8"></line>
+                    <line x1="4" y1="12" x2="8" y2="12"></line>
+                    <line x1="4" y1="16" x2="8" y2="16"></line>
+                </svg>
+            </div>
+            <div class="chart-icon" onclick="changeChartType('bar')" title="Barras">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="18"></rect>
+                </svg>
+            </div>
+            <div class="chart-icon" onclick="changeChartType('area')" title="Área">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18"></rect>
+                </svg>
+            </div>
+            <div class="chart-icon" onclick="changeChartType('line')" title="Línea">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="7"></rect>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <div class="market-tracking-card">
+            <h2 class="card-title">SEGUIMIENTO DEL MERCADO</h2>
+            <div class="gauge-container">
+                <svg class="gauge-background" viewBox="0 0 200 100">
+                    <path d="M 20 80 A 80 80 0 0 1 180 80" fill="none" stroke="#e0e0e0" stroke-width="20" stroke-linecap="round"/>
+                    <path id="gauge-progress" d="M 20 80 A 80 80 0 0 1 140 30" fill="none" stroke="#4ecdc4" stroke-width="20" stroke-linecap="round"/>
+                    <line id="gauge-needle" x1="100" y1="80" x2="130" y2="40" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <button class="add-tracking-btn" onclick="addToWatchlist()">
+                <span class="add-icon">+</span>
+                <span>Añadir a la lista de seguimiento</span>
+            </button>
+        </div>
+
+        <div class="order-book-card">
+            <h2 class="card-title">LIBRO DE PEDIDOS</h2>
+            <div class="order-book-table">
+                <div class="order-book-header">
+                    <div>Bids</div>
+                    <div>Size</div>
+                    <div>Ask</div>
+                </div>
+                <div id="order-book-content">
+                    <div class="order-book-row">
+                        <div>101.32</div>
+                        <div>150</div>
+                        <div>101.35</div>
+                    </div>
+                    <div class="order-book-row">
+                        <div>101.30</div>
+                        <div>200</div>
+                        <div>101.36</div>
+                    </div>
+                    <div class="order-book-row">
+                        <div>101.28</div>
+                        <div>175</div>
+                        <div>101.38</div>
+                    </div>
+                    <div class="order-book-row">
+                        <div>101.25</div>
+                        <div>220</div>
+                        <div>101.40</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./src/public/assets/scripts/active-details.js" defer></script>
+</body>
+</html>
