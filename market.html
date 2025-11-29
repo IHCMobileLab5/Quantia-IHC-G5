@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantia — Market</title>
+    <link rel="stylesheet" href="src/public/assets/styles/market.css" />
+</head>
+
+<body class="market">
+<div class="market__sun" aria-hidden="true"></div>
+
+<!-- TOP BAR (menú global) -->
+<header class="topbar" role="banner">
+    <button class="backBtn" id="backBtn" type="button" aria-label="Atrás">
+        <span class="backBtn__icon">←</span>
+        <span class="backBtn__txt">ATRÁS</span>
+    </button>
+
+    <nav class="nav" aria-label="Navegación principal">
+        <button class="nav__btn" type="button" data-href="dashboard.html">Inicio</button>
+        <button class="nav__btn" type="button" data-href="portfolio-performance.html">Portafolio</button>
+        <button class="nav__btn is-active" type="button" data-href="market.html">Mercados</button>
+        <button class="nav__btn" type="button" data-href="transfer.html">Transferencia</button>
+        <button class="nav__btn" type="button" data-href="contact.html">Contacto</button>
+        <button class="nav__btn nav__btn--lang" id="langBtn" type="button">ES/EN</button>
+    </nav>
+
+    <div class="topbar__actions">
+        <button class="iconBtn" id="alertBtn" type="button" aria-label="Alertas" title="Alertas">⚠️</button>
+
+        <button class="themeToggle" id="themeBtn" type="button" aria-label="Cambiar modo" aria-pressed="false">
+            <span class="themeToggle__knob" aria-hidden="true"></span>
+            <span class="themeToggle__moon" aria-hidden="true">☾</span>
+        </button>
+
+        <button class="iconBtn iconBtn--menu" id="menuBtn" type="button" aria-label="Menú" title="Menú">≡</button>
+    </div>
+</header>
+
+<!-- Drawer mobile -->
+<div class="drawerBackdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+<aside class="drawer" id="drawer" aria-label="Menú móvil">
+    <div class="drawer__head">
+        <div class="drawer__brand">Quantia</div>
+        <button class="iconBtn" id="drawerCloseBtn" type="button" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <button class="drawer__btn" type="button" data-href="dashboard.html">Inicio</button>
+    <button class="drawer__btn" type="button" data-href="portfolio-performance.html">Portafolio</button>
+    <button class="drawer__btn is-active" type="button" data-href="market.html">Mercados</button>
+    <button class="drawer__btn" type="button" data-href="transfer.html">Transferencia</button>
+    <button class="drawer__btn" type="button" data-href="contact.html">Contacto</button>
+
+    <div class="drawer__sep"></div>
+    <button class="drawer__btn drawer__btn--ghost" id="drawerLangBtn" type="button">ES/EN</button>
+</aside>
+
+<!-- TOOL TABS (Ordenes / Apalancamiento / DOM) -->
+<section class="toolsBar" aria-label="Herramientas de Mercado">
+    <nav class="m-tabs" aria-label="Herramientas de Mercado">
+        <button class="m-tab is-active" type="button" data-tab="sl">Orden Stop-Loss</button>
+        <button class="m-tab" type="button" data-tab="tp">Orden Take-Profit</button>
+        <button class="m-tab" type="button" data-tab="lev">Operación de Apalancamiento</button>
+        <button class="m-tab" type="button" data-tab="dom">Profundidad de Mercado</button>
+    </nav>
+</section>
+
+<!-- MAIN -->
+<main class="m-wrap">
+    <!-- CHART -->
+    <section class="m-card m-card--chart" aria-label="Gráfico de mercado">
+        <div class="m-chartTop">
+            <div class="m-badge">
+                <div class="m-badge__row">
+                    <span class="m-badge__sym">KDI/USDT</span>
+                    <span class="m-badge__tf">4h</span>
+                </div>
+
+                <div class="m-badge__row2">
+                    <span class="m-badge__sub">Volume</span>
+                    <span class="m-pill">0.0094</span>
+                    <span class="m-pill m-pill--muted">0.0001</span>
+                    <span class="m-pill m-pill--red">0.0003</span>
+                </div>
+            </div>
+
+            <div class="m-ohlc" aria-label="OHLC">
+                <span class="m-ohlc__item">O <b id="oVal">0.00933</b></span>
+                <span class="m-ohlc__item">L <b id="lVal">0.00933</b></span>
+                <span class="m-ohlc__item">H <b id="hVal">0.00933</b></span>
+                <span class="m-ohlc__item">C <b id="cVal">0.00933</b></span>
+            </div>
+        </div>
+
+        <!-- Clickable para ir a portfolio-performance.html -->
+        <div
+                class="m-chartStage is-clickable"
+                id="chartStage"
+                role="button"
+                tabindex="0"
+                aria-label="Abrir rendimiento del portafolio"
+                title="Ver rendimiento del portafolio"
+        >
+            <canvas id="chart" width="720" height="420" aria-label="Candlestick chart"></canvas>
+            <div class="m-brand">DiamondFx</div>
+        </div>
+    </section>
+
+    <!-- RIGHT CARD -->
+    <section class="m-card m-card--order" aria-label="Panel de herramientas">
+        <!-- Panel: ORDER (se usa para SL y TP) -->
+        <div class="m-panel is-show" id="orderPanel" data-panel="order">
+            <div class="m-orderHead">
+                <h2 class="m-title">Comprar / Vender</h2>
+
+                <div class="m-mode" aria-label="Tipo de operación">
+                    <button class="m-mode__btn is-active" id="buyBtn" type="button">Comprar</button>
+                    <button class="m-mode__btn" id="sellBtn" type="button">Vender</button>
+                </div>
+            </div>
+
+            <div class="m-form">
+                <label class="m-field">
+                    <span class="m-field__label">Cantidad</span>
+                    <input id="qty" class="m-field__input" type="number" inputmode="decimal" min="0" step="0.0001" placeholder="0.00" />
+                </label>
+
+                <label class="m-field">
+                    <span class="m-field__label">Precio</span>
+                    <input id="price" class="m-field__input" type="number" inputmode="decimal" min="0" step="0.01" value="10" />
+                </label>
+
+                <button class="m-addRow" id="slBtn" type="button" aria-pressed="false">
+                    <span>Añadir Stop-Loss</span>
+                    <span class="m-addRow__val" id="slVal">10.00</span>
+                </button>
+
+                <div class="m-inline" id="slInline" hidden>
+                    <span>Stop-Loss</span>
+                    <input id="slInput" type="number" step="0.01" value="10.00" />
+                </div>
+
+                <button class="m-addRow" id="tpBtn" type="button" aria-pressed="false">
+                    <span>Añadir Take-Profit</span>
+                    <span class="m-addRow__val" id="tpVal">15.00</span>
+                </button>
+
+                <div class="m-inline" id="tpInline" hidden>
+                    <span>Take-Profit</span>
+                    <input id="tpInput" type="number" step="0.01" value="15.00" />
+                </div>
+
+                <div class="m-metrics">
+                    <div class="m-metric">
+                        <span>Total</span>
+                        <span class="m-metric__v" id="totalVal">—</span>
+                    </div>
+                    <div class="m-metric">
+                        <span>Comisiones</span>
+                        <span class="m-metric__v" id="feeVal">—</span>
+                    </div>
+                    <div class="m-metric">
+                        <span>Margen</span>
+                        <span class="m-metric__v" id="marginVal">—</span>
+                    </div>
+                </div>
+
+                <button class="m-cta" id="confirmBtn" type="button">Confirmar orden</button>
+            </div>
+        </div>
+
+        <!-- Panel: LEVERAGE -->
+        <div class="m-panel" id="levPanel" data-panel="lev">
+            <h2 class="m-title">Operación de Apalancamiento</h2>
+
+            <div class="m-levGrid">
+                <div class="m-levCard">
+                    <div class="m-levTitle">Apalancamiento</div>
+                    <div class="m-levValue"><span id="levOut">5</span>x</div>
+                    <input class="m-range" id="levRange" type="range" min="1" max="50" value="5" />
+                    <div class="m-levHint">Ajusta el nivel de apalancamiento para simular el margen requerido.</div>
+                </div>
+
+                <div class="m-levCard">
+                    <div class="m-levTitle">Resumen</div>
+                    <div class="m-levHint">Estos valores son una simulación UI (demo).</div>
+
+                    <div class="m-metrics" style="padding-top:10px;border-top:1px solid var(--stroke);">
+                        <div class="m-metric">
+                            <span>Margen estimado</span>
+                            <span class="m-metric__v" id="levMargin">—</span>
+                        </div>
+                        <div class="m-metric">
+                            <span>Fee (0.10%)</span>
+                            <span class="m-metric__v" id="levFee">—</span>
+                        </div>
+                        <div class="m-metric">
+                            <span>Exposición</span>
+                            <span class="m-metric__v" id="levExposure">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel: DOM -->
+        <div class="m-panel" id="domPanel" data-panel="dom">
+            <h2 class="m-title">Profundidad de Mercado</h2>
+            <p class="m-levHint" style="margin-top:6px;">
+                Vista demo de libro de órdenes (Bids/Asks).
+            </p>
+
+            <div class="m-dom">
+                <div class="m-dom__col">
+                    <div class="m-dom__head">Bids (Compra)</div>
+                    <div class="m-dom__row"><span>0.00943</span><span>120</span></div>
+                    <div class="m-dom__row"><span>0.00942</span><span>98</span></div>
+                    <div class="m-dom__row"><span>0.00941</span><span>76</span></div>
+                    <div class="m-dom__row"><span>0.00940</span><span>54</span></div>
+                </div>
+
+                <div class="m-dom__col">
+                    <div class="m-dom__head">Asks (Venta)</div>
+                    <div class="m-dom__row"><span>0.00944</span><span>110</span></div>
+                    <div class="m-dom__row"><span>0.00945</span><span>93</span></div>
+                    <div class="m-dom__row"><span>0.00946</span><span>70</span></div>
+                    <div class="m-dom__row"><span>0.00947</span><span>49</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-toast" id="toast" role="status" aria-live="polite"></div>
+    </section>
+</main>
+
+<script src="src/public/assets/scripts/market.js"></script>
+</body>
+</html>

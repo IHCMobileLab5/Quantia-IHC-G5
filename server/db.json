@@ -59,6 +59,15 @@
       "verificationStatus": "PENDING",
       "verificationHint": "Simulado: se enviaría un correo de verificación.",
       "id": 8
+    },
+    {
+      "name": "schneider",
+      "email": "schneider@gmail.com",
+      "password": "Schneider123",
+      "createdAt": "2025-11-29T16:42:47.174Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 9
     }
   ]
 }

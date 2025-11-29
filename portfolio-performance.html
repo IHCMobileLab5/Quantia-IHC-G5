@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantia — Portfolio Performance</title>
+    <link rel="stylesheet" href="src/public/assets/styles/portfolio-performance.css" />
+</head>
+
+<body class="dash">
+<header class="topbar">
+    <button class="back" id="backBtn" type="button" aria-label="Atrás">
+        <span class="back__icon">‹</span>
+        <span class="back__text">ATRÁS</span>
+    </button>
+
+    <nav class="nav" aria-label="Navegación">
+        <button class="nav__btn" type="button" data-href="dashboard.html">Inicio</button>
+        <button class="nav__btn" type="button" data-href="portfolio.html">Portafolio</button>
+        <button class="nav__btn" type="button" data-href="market.html">Markets</button>
+        <button class="nav__btn" type="button" data-href="transfer.html">Transferencia</button>
+        <button class="nav__btn" type="button" data-href="contact.html">Contacto</button>
+        <button class="nav__lang" id="langBtn" type="button">ES/EN</button>
+    </nav>
+
+    <div class="topbar__right">
+        <button class="iconBtn" id="alertBtn" type="button" aria-label="Alertas" title="Alertas">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 1.8 20.5A1.2 1.2 0 0 0 2.84 22h18.32a1.2 1.2 0 0 0 1.04-1.5L12 3Z"></path>
+                <path d="M12 9v5"></path>
+                <path d="M12 17h.01"></path>
+            </svg>
+        </button>
+
+        <button class="themeToggle" id="themeBtn" type="button" aria-label="Cambiar tema" aria-pressed="false">
+        <span class="themeToggle__track">
+          <span class="themeToggle__sun">☀</span>
+          <span class="themeToggle__moon">☾</span>
+          <span class="themeToggle__thumb" aria-hidden="true"></span>
+        </span>
+        </button>
+
+        <button class="iconBtn iconBtn--menu" id="menuBtn" type="button" aria-label="Menú" title="Menú">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<div class="drawerBackdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+<aside class="drawer" id="drawer" aria-label="Menú móvil">
+    <div class="drawer__top">
+        <div class="drawer__title">QUANTIA</div>
+        <button class="drawer__close" id="drawerCloseBtn" type="button" aria-label="Cerrar">✕</button>
+    </div>
+
+    <nav class="drawer__nav">
+        <button class="drawer__btn" type="button" data-href="dashboard.html">Inicio</button>
+        <button class="drawer__btn" type="button" data-href="portfolio.html">Portafolio</button>
+        <button class="drawer__btn" type="button" data-href="market.html">Markets</button>
+        <button class="drawer__btn" type="button" data-href="transfer.html">Transferencia</button>
+        <button class="drawer__btn" type="button" data-href="contact.html">Contacto</button>
+    </nav>
+
+    <div class="drawer__bottom">
+        <button class="drawer__lang" id="drawerLangBtn" type="button">ES/EN</button>
+    </div>
+</aside>
+
+<main class="perf">
+    <section class="perf__shell">
+        <div class="perf__top">
+            <div class="pill">Cuenta activa</div>
+            <div class="seg">
+                <button class="seg__btn is-active" type="button" data-mode="demo">Demo</button>
+                <button class="seg__btn" type="button" data-mode="real">Real</button>
+            </div>
+        </div>
+
+        <div class="perf__filters">
+            <div class="pill">Balance Virtual</div>
+
+            <select class="select" id="indexSel" aria-label="Índice">
+                <option value="sp">S&P 500</option>
+                <option value="nasdaq">NASDAQ 100</option>
+                <option value="btc">BTC Index</option>
+            </select>
+
+            <select class="select" id="periodSel" aria-label="Periodo">
+                <option value="annual">Anual</option>
+                <option value="monthly">Mensual</option>
+                <option value="weekly">Semanal</option>
+            </select>
+
+            <div class="side">
+                <div class="pill">Demo / Real</div>
+                <select class="select" id="sideSel" aria-label="Operación">
+                    <option value="buy">Comprar</option>
+                    <option value="sell">Vender</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="cards">
+            <article class="card">
+                <h3>Rendimiento Anual Portafolio</h3>
+                <div class="metric">
+                    <div class="metric__main">+12.4%</div>
+                    <div class="metric__sub">Ganancia: S/ 1,240 · Volatilidad: 6.1%</div>
+                </div>
+                <div class="mini">
+                    <span class="tag tag--up">Mejor mes: +4.2%</span>
+                    <span class="tag">Peor mes: −1.1%</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <h3>Índice</h3>
+                <div class="metric">
+                    <div class="metric__main" id="indexTitle">S&P 500</div>
+                    <div class="metric__sub">Retorno anual: +9.1% · Riesgo: 5.4%</div>
+                </div>
+                <div class="mini">
+                    <span class="tag">Correlación: 0.72</span>
+                    <span class="tag">Beta: 0.88</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <h3>Diferencia</h3>
+                <div class="metric">
+                    <div class="metric__main">+3.3%</div>
+                    <div class="metric__sub">Supera al índice por +S/ 330 aprox.</div>
+                </div>
+                <div class="mini">
+                    <span class="tag tag--up">Outperformance</span>
+                    <span class="tag">Tracking error: 1.9%</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="chart">
+            <div class="chart__head">
+                <div class="chart__title">Evolución del rendimiento</div>
+                <div class="range">
+                    <button class="range__btn is-active" type="button" data-range="1d">1D</button>
+                    <button class="range__btn" type="button" data-range="1w">1W</button>
+                    <button class="range__btn" type="button" data-range="1m">1M</button>
+                </div>
+            </div>
+
+            <div class="chart__body" role="img" aria-label="Gráfico de rendimiento">
+                <svg viewBox="0 0 720 260" preserveAspectRatio="none">
+                    <path class="grid" d="M40 30H700M40 90H700M40 150H700M40 210H700"></path>
+                    <path class="grid" d="M40 30V230M200 30V230M360 30V230M520 30V230M700 30V230"></path>
+
+                    <polyline class="line line--a"
+                              points="40,205 110,205 170,120 230,70 310,130 380,140 460,140 520,140 600,205 700,205"></polyline>
+
+                    <polyline class="line line--b"
+                              points="40,70 110,70 170,70 230,170 310,170 380,170 460,210 520,120 600,70 700,70"></polyline>
+                </svg>
+            </div>
+
+            <div class="chart__legend">
+                <span class="lg"><i class="dot dot--a"></i> Portafolio</span>
+                <span class="lg"><i class="dot dot--b"></i> Índice</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="src/public/assets/scripts/portfolio-performance.js"></script>
+</body>
+</html>
