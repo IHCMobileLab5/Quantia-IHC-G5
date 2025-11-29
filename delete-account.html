@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Cuenta</title>
+    <link rel="stylesheet" href="src/public/assets/styles/delete-account.css">
+</head>
+<body>
+
+<img src="src/public/assets/images/sun.png" class="sun-deco">
+
+<div class="container">
+
+    <div class="header">
+        <span class="back" onclick="goBack()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </span>
+        <h1>ELIMINAR CUENTA</h1>
+    </div>
+
+    <div class="alert-box">
+        <img src="src/public/assets/images/delete.png" class="alert-icon">
+        <p>Tu saldo debe ser cero antes de eliminar tu cuenta</p>
+        <strong>Saldo: 0</strong>
+    </div>
+
+    <div class="alert-box">
+        <img src="src/public/assets/images/delete.png" class="alert-icon">
+        <p>
+            Al eliminar tu cuenta, tu información personal se borrará permanentemente
+            tras el periodo legal de retención
+        </p>
+    </div>
+
+    <label class="input-label">Código 2FA</label>
+    <input type="text" class="input" placeholder="Código 2FA">
+
+    <label class="checkbox-wrapper">
+        <input type="checkbox" id="confirmDelete">
+        <span>Confirmo que deseo eliminar mi cuenta y comprendo que los datos se borrarán tras el periodo de retención</span>
+    </label>
+
+    <button class="delete-btn" id="deleteBtn" disabled>ELIMINAR CUENTA</button>
+
+</div>
+
+<script src="src/public/assets/scripts/delete-account.js"></script>
+</body>
+</html>
