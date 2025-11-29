@@ -9,6 +9,9 @@ const drawerCloseBtn = document.getElementById("drawerCloseBtn");
 const langBtn = document.getElementById("langBtn");
 const drawerLangBtn = document.getElementById("drawerLangBtn");
 
+const indexSel = document.getElementById("indexSel");
+const indexTitle = document.getElementById("indexTitle");
+
 function isMobile() {
     return window.matchMedia("(max-width: 980px)").matches;
 }
@@ -24,35 +27,6 @@ function closeDrawer() {
     drawer.classList.remove("is-open");
     drawerBackdrop.classList.remove("is-show");
 }
-
-function getUserName() {
-    const raw = localStorage.getItem("quantia_user");
-    if (!raw) return "Usuario";
-
-    try {
-        const parsed = JSON.parse(raw);
-        let name =
-            parsed?.name ||
-            parsed?.fullName ||
-            parsed?.username ||
-            parsed?.email ||
-            parsed?.user?.name ||
-            parsed?.user?.fullName ||
-            "";
-
-        name = String(name).trim();
-        return name || "Usuario";
-    } catch {
-        const name = String(raw).trim();
-        return name || "Usuario";
-    }
-}
-
-(function renderUserName() {
-    const el = document.getElementById("userName");
-    if (!el) return;
-    el.textContent = getUserName();
-})();
 
 (function initTheme() {
     const saved = localStorage.getItem("quantia_theme");
@@ -85,7 +59,6 @@ document.addEventListener("keydown", (e) => {
 function setActiveByHref(href) {
     document.querySelectorAll(".nav__btn").forEach((b) => b.classList.remove("is-active"));
     document.querySelectorAll(".drawer__btn").forEach((b) => b.classList.remove("is-active"));
-
     document.querySelector(`.nav__btn[data-href="${href}"]`)?.classList.add("is-active");
     document.querySelector(`.drawer__btn[data-href="${href}"]`)?.classList.add("is-active");
 }
@@ -137,5 +110,25 @@ window.addEventListener("resize", () => {
     if (!isMobile()) closeDrawer();
 });
 
-const barsChartBtn = document.getElementById("barsChartBtn");
-barsChartBtn?.addEventListener("click", () => go("portfolio-performance.html"));
+document.querySelectorAll(".range__btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".range__btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+    });
+});
+
+document.querySelectorAll(".seg__btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".seg__btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+    });
+});
+
+function syncIndexTitle() {
+    if (!indexSel || !indexTitle) return;
+    const opt = indexSel.options[indexSel.selectedIndex];
+    indexTitle.textContent = opt ? opt.textContent : "Índice";
+}
+
+indexSel?.addEventListener("change", syncIndexTitle);
+syncIndexTitle();
