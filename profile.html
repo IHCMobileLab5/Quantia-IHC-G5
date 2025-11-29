@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="src/public/assets/styles/profile.css">
+</head>
+<body>
+<img src="src/public/assets/images/img.png" alt="Sun decoration" class="sun-decoration">
+
+<div class="container">
+    <header>
+        <h1>PERFIL</h1>
+    </header>
+
+    <div class="content">
+
+        <div class="left">
+            <img src="src/public/assets/images/avatar.png" class="avatar" alt="Avatar">
+        </div>
+
+        <div class="right">
+            <label>Nombre</label>
+            <input type="text" id="nombre">
+
+            <label>Apellido</label>
+            <input type="text" id="apellido">
+
+            <label>Teléfono</label>
+            <input type="text" id="telefono">
+
+            <div class="button">
+                <div class="dni-box">
+                    <label>DNI</label>
+                    <input type="text" id="dni">
+                </div>
+
+                <div class="email-box">
+                    <label>Email</label>
+                    <input type="text" id="email">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="editar">Editar</button>
+
+    <div class="buttons-row">
+        <button class="kyc">Verificar KYC</button>
+        <button class="plus">+</button>
+    </div>
+
+</div>
+
+<script src="./src/public/assets/scripts/profile.js"></script>
+</body>
+</html>
