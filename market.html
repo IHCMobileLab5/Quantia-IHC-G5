@@ -10,7 +10,7 @@
 <body class="market">
 <div class="market__sun" aria-hidden="true"></div>
 
-<!-- TOP BAR (menú global) -->
+
 <header class="topbar" role="banner">
     <button class="backBtn" id="backBtn" type="button" aria-label="Atrás">
         <span class="backBtn__icon">←</span>
@@ -38,7 +38,7 @@
     </div>
 </header>
 
-<!-- Drawer mobile -->
+
 <div class="drawerBackdrop" id="drawerBackdrop" aria-hidden="true"></div>
 
 <aside class="drawer" id="drawer" aria-label="Menú móvil">
@@ -57,7 +57,7 @@
     <button class="drawer__btn drawer__btn--ghost" id="drawerLangBtn" type="button">ES/EN</button>
 </aside>
 
-<!-- TOOL TABS (Ordenes / Apalancamiento / DOM) -->
+
 <section class="toolsBar" aria-label="Herramientas de Mercado">
     <nav class="m-tabs" aria-label="Herramientas de Mercado">
         <button class="m-tab is-active" type="button" data-tab="sl">Orden Stop-Loss</button>
@@ -67,9 +67,9 @@
     </nav>
 </section>
 
-<!-- MAIN -->
+
 <main class="m-wrap">
-    <!-- CHART -->
+
     <section class="m-card m-card--chart" aria-label="Gráfico de mercado">
         <div class="m-chartTop">
             <div class="m-badge">
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <!-- Clickable para ir a portfolio-performance.html -->
+
         <div
                 class="m-chartStage is-clickable"
                 id="chartStage"
@@ -108,9 +108,9 @@
         </div>
     </section>
 
-    <!-- RIGHT CARD -->
+
     <section class="m-card m-card--order" aria-label="Panel de herramientas">
-        <!-- Panel: ORDER (se usa para SL y TP) -->
+
         <div class="m-panel is-show" id="orderPanel" data-panel="order">
             <div class="m-orderHead">
                 <h2 class="m-title">Comprar / Vender</h2>
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <!-- Panel: LEVERAGE -->
+
         <div class="m-panel" id="levPanel" data-panel="lev">
             <h2 class="m-title">Operación de Apalancamiento</h2>
 
@@ -205,7 +205,7 @@
             </div>
         </div>
 
-        <!-- Panel: DOM -->
+
         <div class="m-panel" id="domPanel" data-panel="dom">
             <h2 class="m-title">Profundidad de Mercado</h2>
             <p class="m-levHint" style="margin-top:6px;">
