@@ -4,7 +4,6 @@ body {
     background: #f4f7fb;
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 240px;
     height: 100vh;
@@ -47,7 +46,6 @@ body {
     border-radius: 6px;
 }
 
-/* BOTÓN MÓVIL */
 .toggle-btn {
     display: none;
     position: fixed;
@@ -63,20 +61,17 @@ body {
     font-size: 20px;
 }
 
-/* CONTENIDO */
 .content {
     padding: 30px;
     transition: margin-left 0.3s ease;
 }
 
-/* Desktop: sidebar visible */
 @media (min-width: 769px) {
     .content {
         margin-left: 260px;
     }
 }
 
-/* Responsive: sidebar oculto */
 @media (max-width: 768px) {
     .sidebar {
         left: -260px;
