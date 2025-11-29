@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f7fb;
+    overflow: hidden;
 }
 
 .sidebar {
@@ -64,18 +65,21 @@ body {
 }
 
 .content-frame {
-    position: absolute;
-    left: 240px;
-    top: 0;
     width: calc(100% - 240px);
     height: 100vh;
     border: none;
-    background: #f4f7fb;
-    transition: left 0.3s ease, width 0.3s ease;
+    position: fixed;
+    left: 240px;
+    top: 0;
+    overflow: auto;
+}
+
+.sidebar.open ~ .content-frame {
+    left: 60px;
+    width: calc(100% - 60px);
 }
 
 @media (max-width: 768px) {
-
     .sidebar {
         left: -260px;
     }
@@ -89,6 +93,11 @@ body {
     }
 
     .content-frame {
+        left: 0;
+        width: 100%;
+    }
+
+    .sidebar.open ~ .content-frame {
         left: 0;
         width: 100%;
     }

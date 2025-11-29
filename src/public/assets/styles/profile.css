@@ -4,25 +4,39 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #a8d5d5 0%, #d4e8e8 100%);
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+    overflow-y: auto;
 }
 
 .container {
     margin: 0 auto;
     position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    padding-bottom: 20px;
 }
 
 .sun-decoration {
     position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 450px;
-    height: 400px;
+    top: 0;
+    right: -17px;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
     z-index: 1;
+    pointer-events: none;
 }
 
 header {
@@ -37,7 +51,6 @@ h1 {
     color: #2c3e50;
     font-weight: 700;
 }
-
 
 .content {
     width: 1000px;
@@ -85,7 +98,7 @@ input {
     border: 1px solid #000;
     border-radius: 8px;
     font-weight: bold;
-    margin: 45px auto;
+    margin: 30px auto;
     cursor: pointer;
 }
 
@@ -96,7 +109,7 @@ input {
     flex-wrap: nowrap;
 }
 
-.buttons-row{
+.buttons-row {
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -125,9 +138,76 @@ input {
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+
+    body {
+        padding: 25px !important;
+    }
+
+    .content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .avatar {
+        width: 180px;
+        height: 180px;
+    }
+
+    .right {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .dni-box input,
+    .email-box input {
+        width: 100%;
+    }
+
+    .buttons-row {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .editar {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 20px !important;
+    }
+
+    .avatar {
+        width: 140px;
+        height: 140px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
     .sun-decoration {
-        width: 100px;
-        height: 100px;
+        max-width: 160px;
+        max-height: 120px;
+    }
+
+    .dni-box input,
+    .email-box input {
+        width: 100%;
     }
 }
