@@ -15,9 +15,13 @@ body {
 .sun-deco {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 260px;
-    opacity: 0.9;
+    right: -17px;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -118,12 +122,183 @@ h1 {
     object-fit: contain;
 }
 
-@media (max-width: 600px) {
+/* Responsive para tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
     h1 {
-        font-size: 26px;
+        font-size: 28px;
     }
 
     .sun-deco {
-        width: 160px;
+        max-width: 250px;
+        max-height: 250px;
+        right: 0;
+    }
+
+    .alert-box {
+        padding: 16px 20px;
+        padding-left: 50px;
+        font-size: 15px;
+    }
+
+    .alert-box .alert-icon {
+        width: 20px;
+        height: 20px;
+        left: 18px;
+        top: 16px;
+    }
+
+    .input {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .checkbox-wrapper {
+        font-size: 13px;
+    }
+
+    .delete-btn {
+        padding: 13px;
+        font-size: 15px;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .back {
+        font-size: 28px;
+    }
+
+    .back svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sun-deco {
+        max-width: 180px;
+        max-height: 170px;
+        right: 0;
+    }
+
+    .header {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .alert-box {
+        padding: 14px 18px;
+        padding-left: 45px;
+        font-size: 14px;
+        margin-bottom: 18px;
+        border-radius: 10px;
+    }
+
+    .alert-box .alert-icon {
+        width: 18px;
+        height: 18px;
+        left: 16px;
+        top: 14px;
+    }
+
+    .input-label {
+        font-size: 15px;
+        margin: 8px 0 5px;
+    }
+
+    .input {
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .checkbox-wrapper {
+        font-size: 12px;
+        margin-bottom: 25px;
+        gap: 8px;
+    }
+
+    .checkbox-wrapper input {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+
+    .delete-btn {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 400px) {
+    body {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .back {
+        font-size: 24px;
+    }
+
+    .back svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .sun-deco {
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+    .alert-box {
+        padding: 12px 15px;
+        padding-left: 40px;
+        font-size: 13px;
+    }
+
+    .alert-box .alert-icon {
+        width: 16px;
+        height: 16px;
+        left: 14px;
+        top: 12px;
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .checkbox-wrapper {
+        font-size: 11px;
+    }
+
+    .checkbox-wrapper input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .delete-btn {
+        padding: 11px;
+        font-size: 13px;
     }
 }

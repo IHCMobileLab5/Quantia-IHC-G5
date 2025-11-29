@@ -142,7 +142,6 @@ input {
 }
 
 @media (max-width: 900px) {
-
     body {
         padding: 25px;
     }
@@ -183,7 +182,7 @@ input {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     body {
         padding: 20px;
@@ -201,12 +200,12 @@ input {
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 26px;
     }
 
     .sun-decoration {
-        max-width: 160px;
-        max-height: 120px;
+        max-width: 180px;
+        max-height: 170px;
     }
 
     .dni-box input,
