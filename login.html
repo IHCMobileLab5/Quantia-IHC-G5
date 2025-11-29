@@ -22,7 +22,7 @@
     <section class="auth-card" aria-labelledby="titulo-login">
         <h1 id="titulo-login" class="auth-title">Iniciar sesión</h1>
 
-        <form class="auth-form" novalidate>
+        <form class="auth-form" id="loginForm" novalidate>
             <label class="field">
                 <span class="label">Correo electrónico</span>
                 <input
@@ -30,7 +30,7 @@
                         name="email"
                         inputmode="email"
                         autocomplete="email"
-                        placeholder="tu.correo@dominio.com"
+                        placeholder="usuario@gmail.com"
                         required
                 />
             </label>
@@ -52,7 +52,6 @@
                     <span>Recordar contraseña</span>
                 </label>
 
-                <!-- ✅ evita # (no cambia la URL a login.html#) -->
                 <a class="link" href="config.html">Restablecer contraseña</a>
             </div>
 
@@ -83,47 +82,31 @@
     </aside>
 </main>
 
-<script>
-    const API = "http://localhost:3000/api/v1";
-    const form = document.querySelector(".auth-form");
+<!-- Toast pro (1 solo) -->
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <div class="toast__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="toast__svg">
+            <!-- success -->
+            <g class="i-success">
+                <path d="M20 7 10.5 16.5 4 10" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <!-- error -->
+            <g class="i-error">
+                <path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round"/>
+            </g>
+        </svg>
+    </div>
 
-    const DASHBOARD_URL = new URL("dashboard.html", window.location.href).toString();
+    <div class="toast__content">
+        <div class="toast__title" id="toastTitle">Listo</div>
+        <div class="toast__msg" id="toastMsg">Mensaje</div>
+    </div>
 
-    form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    <button class="toast__close" id="toastClose" type="button" aria-label="Cerrar">×</button>
+</div>
 
-        const emailInput = form.querySelector('input[name="email"]');
-        const passInput = form.querySelector('input[name="password"]');
-
-        const email = (emailInput?.value || "").trim();
-        const password = passInput?.value || "";
-
-        if (!email || !password) {
-            alert("Completa correo y contraseña.");
-            return;
-        }
-
-        try {
-            const url =
-                `${API}/users?email=${encodeURIComponent(email)}` +
-                `&password=${encodeURIComponent(password)}`;
-
-            const res = await fetch(url, { cache: "no-store" });
-            if (!res.ok) throw new Error("No se pudo conectar con la API (json-server).");
-
-            const users = await res.json();
-            if (!Array.isArray(users) || users.length === 0) {
-                throw new Error("Correo o contraseña incorrectos.");
-            }
-
-            localStorage.setItem("quantia_user", JSON.stringify(users[0]));
-
-
-            window.location.assign(DASHBOARD_URL);
-        } catch (err) {
-            alert(err?.message || "Error al iniciar sesión.");
-        }
-    });
-</script>
+<script src="src/public/assets/scripts/login.js" defer></script>
 </body>
 </html>

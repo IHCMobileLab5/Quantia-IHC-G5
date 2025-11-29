@@ -426,3 +426,125 @@ input[type="password"]:focus{
         padding-bottom: 2rem;
     }
 }
+/* ===== Toast pro (success / error) ===== */
+.toast{
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: min(420px, calc(100vw - 40px));
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 14px 14px 12px;
+    border-radius: 14px;
+    z-index: 9999;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 18px 40px rgba(2,6,23,.20);
+    border: 1px solid rgba(15,23,42,.10);
+
+    transform: translateY(14px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.toast.is-show{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: transform .22s ease, opacity .22s ease;
+}
+
+.toast.is-hide{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform .18s ease, opacity .18s ease;
+}
+
+/* icon switching */
+.toast .i-success{ display: none; }
+.toast .i-error{ display: none; }
+.toast[data-type="success"] .i-success{ display: block; }
+.toast[data-type="error"] .i-error{ display: block; }
+
+.toast[data-type="success"]{
+    background: rgba(16,185,129,.16);
+    border-color: rgba(16,185,129,.35);
+}
+
+.toast[data-type="error"]{
+    background: rgba(239,68,68,.14);
+    border-color: rgba(239,68,68,.35);
+}
+
+.toast__icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(15,23,42,.08);
+}
+
+.toast[data-type="success"] .toast__icon{
+    background: rgba(16,185,129,.12);
+}
+
+.toast[data-type="error"] .toast__icon{
+    background: rgba(239,68,68,.10);
+}
+
+.toast__svg{
+    width: 22px;
+    height: 22px;
+    color: rgba(15,23,42,.85);
+}
+
+.toast[data-type="success"] .toast__svg{ color: #059669; }
+.toast[data-type="error"] .toast__svg{ color: #ef4444; }
+
+.toast__content{ flex: 1; }
+.toast__title{
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .2px;
+    margin-bottom: 2px;
+    color: rgba(15,23,42,.92);
+}
+
+.toast__msg{
+    font-size: 13px;
+    color: rgba(15,23,42,.75);
+    line-height: 1.25;
+}
+
+.toast__close{
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 0;
+    background: rgba(255,255,255,.45);
+    cursor: pointer;
+    color: rgba(15,23,42,.70);
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.toast__close:hover{
+    background: rgba(255,255,255,.72);
+    color: rgba(15,23,42,.90);
+}
+
+@media (max-width: 560px){
+    .toast{
+        right: 14px;
+        bottom: 14px;
+    }
+}
