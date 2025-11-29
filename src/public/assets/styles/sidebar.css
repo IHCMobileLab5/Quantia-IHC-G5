@@ -1,91 +1,133 @@
-body {
+* {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fb;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.sidebar {
-    width: 240px;
-    height: 100vh;
-    background: #1e1e2f;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    z-index: 1000;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #a8d5d5 0%, #d4e8e8 100%);
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.sidebar .logo {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 25px;
+.container {
+    margin: 0 auto;
+    position: relative;
+}
+
+.sun-decoration {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 450px;
+    height: 400px;
+    z-index: 1;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+
+.content {
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.right {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
     font-weight: bold;
 }
 
-.sidebar .menu {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar .menu li {
-    padding: 12px 20px;
-}
-
-.sidebar .menu li a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    display: block;
-    transition: 0.2s;
-}
-
-.sidebar .menu li a:hover {
-    background: #35354a;
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
     border-radius: 6px;
+    border: 1px solid #999;
 }
 
-.toggle-btn {
-    display: none;
-    position: fixed;
-    left: 10px;
-    top: 10px;
-    z-index: 1500;
-    background: #1e1e2f;
+.dni-box input,
+.email-box input {
+    width: 180px;
+}
+
+.editar {
+    display: block;
+    background: #e6b48a;
+    padding: 12px 100px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 45px auto;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: nowrap;
+}
+
+.buttons-row{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 10px 15px;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.kyc {
+    background: #4a90e2;
     color: white;
     border: none;
-    padding: 10px 14px;
-    border-radius: 6px;
+    padding: 12px 22px;
+    border-radius: 8px;
     cursor: pointer;
+}
+
+.plus {
+    background: black;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50%;
     font-size: 20px;
-}
-
-.content {
-    padding: 30px;
-    transition: margin-left 0.3s ease;
-}
-
-@media (min-width: 769px) {
-    .content {
-        margin-left: 260px;
-    }
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        left: -260px;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .toggle-btn {
-        display: block;
-    }
-
-    .content {
-        margin-left: 0;
+    .sun-decoration {
+        width: 100px;
+        height: 100px;
     }
 }
