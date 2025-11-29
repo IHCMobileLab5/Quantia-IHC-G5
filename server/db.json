@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "nombre": "Carlos",
+      "email": "carlos@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-11-29T06:32:57.102Z",
+      "id": 1
+    },
+    {
+      "nombre": "milenka",
+      "email": "gatita@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-11-29T06:33:45.463Z",
+      "id": 2
+    },
+    {
+      "nombre": "Carlos",
+      "email": "aaa@gmail.com",
+      "password": "12312312321",
+      "createdAt": "2025-11-29T06:36:17.123Z",
+      "id": 3
+    },
+    {
+      "name": "jonatan",
+      "email": "jonatan@gmail.com",
+      "password": "123123123",
+      "createdAt": "2025-11-29T06:45:56.782Z",
+      "id": 4
+    },
+    {
+      "name": "jonatan",
+      "email": "jonatn@gmail.com",
+      "password": "123123123",
+      "createdAt": "2025-11-29T06:46:08.323Z",
+      "id": 5
+    },
+    {
+      "name": "snaydc",
+      "email": "shay@gmail.com",
+      "password": "123123123",
+      "createdAt": "2025-11-29T06:50:23.759Z",
+      "id": 6
+    },
+    {
+      "name": "Shaggi Carrasco",
+      "email": "perro123@gmail.com",
+      "password": "A123123123",
+      "createdAt": "2025-11-29T07:23:25.914Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 7
+    },
+    {
+      "name": "Carlos",
+      "email": "lopez@gmail.com",
+      "password": "A1231223",
+      "createdAt": "2025-11-29T07:26:12.865Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 8
+    }
+  ]
+}

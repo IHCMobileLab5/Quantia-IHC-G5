@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantia — Crear cuenta</title>
+
+    <link rel="stylesheet" href="src/public/assets/styles/register.css" />
+    <link rel="icon" href="src/public/favicon.ico" />
+</head>
+
+<body>
+<!-- Decoraciones -->
+<img class="coin-deco" src="/src/public/assets/images/moneda.png" alt="" aria-hidden="true" />
+<img class="brand-mark" src="/src/public/assets/images/logo1.png" alt="Quantia" />
+
+<main class="page">
+    <section class="card" aria-labelledby="title">
+        <div class="avatar">
+            <img class="avatar-img" src="/src/public/assets/images/prs1.png" alt="Avatar de usuario" />
+        </div>
+
+        <h1 id="title" class="title">Crear una cuenta</h1>
+
+        <form class="form" id="registerForm" action="#" method="post" novalidate>
+            <!-- Nombre -->
+            <div class="field-group">
+                <label class="field">
+            <span class="field__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="ico">
+                <path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Z" fill="currentColor"/>
+                <path d="M4 22c0-4.418 3.582-8 8-8s8 3.582 8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+                    <input id="name" class="field__input" type="text" name="name" placeholder="Nombre" autocomplete="name" required />
+                </label>
+                <small class="field__error" id="nameError" aria-live="polite"></small>
+            </div>
+
+            <!-- Correo -->
+            <div class="field-group">
+                <label class="field">
+            <span class="field__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="ico">
+                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"
+                      fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M5.5 7.5 12 12l6.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+                    <input id="email" class="field__input" type="email" name="email" placeholder="Correo electrónico" autocomplete="email" inputmode="email" required />
+                </label>
+                <small class="field__error" id="emailError" aria-live="polite"></small>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="field-group">
+                <label class="field field--with-eye">
+            <span class="field__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="ico">
+                <path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6.5 11h11A2.5 2.5 0 0 1 20 13.5v5A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-5A2.5 2.5 0 0 1 6.5 11Z"
+                      fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+
+                    <input id="password" class="field__input" type="password" name="password" placeholder="Contraseña" autocomplete="new-password" required />
+
+                    <button class="eye is-hidden" type="button" data-toggle="#password" aria-label="Mostrar contraseña">
+                        <svg viewBox="0 0 24 24" class="eye__svg" aria-hidden="true">
+                            <g class="eye-open">
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            </g>
+                            <g class="eye-closed">
+                                <path d="M3 12s3.5-7 9-7c2.2 0 4.1.7 5.7 1.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M21 12s-3.5 7-9 7c-2.2 0-4.1-.7-5.7-1.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 3l18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </button>
+                </label>
+                <small class="field__error" id="passwordError" aria-live="polite"></small>
+            </div>
+
+            <!-- Confirmar contraseña -->
+            <div class="field-group">
+                <label class="field field--with-eye">
+            <span class="field__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="ico">
+                <path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6.5 11h11A2.5 2.5 0 0 1 20 13.5v5A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-5A2.5 2.5 0 0 1 6.5 11Z"
+                      fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+
+                    <input id="password2" class="field__input" type="password" name="confirmPassword" placeholder="Confirmar contraseña" autocomplete="new-password" required />
+
+                    <button class="eye is-hidden" type="button" data-toggle="#password2" aria-label="Mostrar confirmación de contraseña">
+                        <svg viewBox="0 0 24 24" class="eye__svg" aria-hidden="true">
+                            <g class="eye-open">
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            </g>
+                            <g class="eye-closed">
+                                <path d="M3 12s3.5-7 9-7c2.2 0 4.1.7 5.7 1.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M21 12s-3.5 7-9 7c-2.2 0-4.1-.7-5.7-1.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 3l18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </button>
+                </label>
+                <small class="field__error" id="confirmError" aria-live="polite"></small>
+            </div>
+
+            <label class="terms">
+                <input type="checkbox" id="terms" name="terms" required />
+                <span>Acepto los términos y condiciones del servicio.</span>
+            </label>
+
+            <button class="btn" id="submitBtn" type="submit">REGISTRARSE</button>
+        </form>
+    </section>
+</main>
+
+<!-- Toast (éxito / error) -->
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <div class="toast__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="toast__svg">
+            <path d="M20 7 10.5 16.5 4 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <div class="toast__content">
+        <div class="toast__title" id="toastTitle">Listo</div>
+        <div class="toast__msg" id="toastMsg">Mensaje</div>
+    </div>
+
+    <button class="toast__close" id="toastClose" type="button" aria-label="Cerrar">✕</button>
+</div>
+
+<script src="src/public/assets/scripts/register.js" defer></script>
+</body>
+</html>
