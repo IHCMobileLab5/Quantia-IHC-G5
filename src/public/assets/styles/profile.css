@@ -141,7 +141,7 @@ input {
 @media (max-width: 900px) {
 
     body {
-        padding: 25px !important;
+        padding: 25px;
     }
 
     .content {
@@ -183,7 +183,7 @@ input {
 @media (max-width: 500px) {
 
     body {
-        padding: 20px !important;
+        padding: 20px;
     }
 
     .avatar {
