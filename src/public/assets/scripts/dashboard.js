@@ -6,8 +6,8 @@ const drawer = document.getElementById("drawer");
 const drawerBackdrop = document.getElementById("drawerBackdrop");
 const drawerCloseBtn = document.getElementById("drawerCloseBtn");
 
-const langBtn = document.getElementById("langBtn");
-const drawerLangBtn = document.getElementById("drawerLangBtn");
+const profileBtn = document.getElementById("profileBtn");
+const drawerProfileBtn = document.getElementById("drawerProfileBtn");
 
 function isMobile() {
     return window.matchMedia("(max-width: 980px)").matches;
@@ -57,7 +57,10 @@ function getUserName() {
 (function initTheme() {
     const saved = localStorage.getItem("quantia_theme");
     if (saved === "dark") document.body.classList.add("theme-dark");
-    themeBtn?.setAttribute("aria-pressed", document.body.classList.contains("theme-dark") ? "true" : "false");
+    themeBtn?.setAttribute(
+        "aria-pressed",
+        document.body.classList.contains("theme-dark") ? "true" : "false"
+    );
 })();
 
 themeBtn?.addEventListener("click", () => {
@@ -111,27 +114,8 @@ document.querySelectorAll(".drawer__btn").forEach((btn) => {
     setActiveByHref(file);
 })();
 
-function applyLangLabel() {
-    const current = localStorage.getItem("quantia_lang") || "es";
-    const label = current === "es" ? "ES/EN" : "EN/ES";
-    if (langBtn) langBtn.textContent = label;
-    if (drawerLangBtn) drawerLangBtn.textContent = label;
-}
-
-function toggleLang() {
-    const current = localStorage.getItem("quantia_lang") || "es";
-    const next = current === "es" ? "en" : "es";
-    localStorage.setItem("quantia_lang", next);
-    applyLangLabel();
-}
-
-applyLangLabel();
-
-langBtn?.addEventListener("click", toggleLang);
-drawerLangBtn?.addEventListener("click", () => {
-    toggleLang();
-    closeDrawer();
-});
+profileBtn?.addEventListener("click", () => go("profile.html"));
+drawerProfileBtn?.addEventListener("click", () => go("profile.html"));
 
 window.addEventListener("resize", () => {
     if (!isMobile()) closeDrawer();
