@@ -1,59 +1,166 @@
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+const backBtn = document.getElementById("backBtn");
+const themeBtn = document.getElementById("themeBtn");
+const menuBtn = document.getElementById("menuBtn");
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const content = document.getElementById('content').value;
-    const privacy = document.getElementById('privacy').checked;
+const drawer = document.getElementById("drawer");
+const drawerBackdrop = document.getElementById("drawerBackdrop");
+const drawerCloseBtn = document.getElementById("drawerCloseBtn");
 
-    if (!privacy) {
-        alert('Please accept the terms and conditions');
-        return;
+const langBtn = document.getElementById("langBtn");
+const drawerLangBtn = document.getElementById("drawerLangBtn");
+const drawerThemeBtn = document.getElementById("drawerThemeBtn");
+
+function isMobile() {
+    return window.matchMedia("(max-width: 980px)").matches;
+}
+
+function openDrawer() {
+    if (!drawer || !drawerBackdrop) return;
+    drawer.classList.add("is-open");
+    drawerBackdrop.classList.add("is-show");
+    drawerBackdrop.setAttribute("aria-hidden", "false");
+}
+
+function closeDrawer() {
+    if (!drawer || !drawerBackdrop) return;
+    drawer.classList.remove("is-open");
+    drawerBackdrop.classList.remove("is-show");
+    drawerBackdrop.setAttribute("aria-hidden", "true");
+}
+
+(function initTheme() {
+    const saved = localStorage.getItem("quantia_theme");
+    if (saved === "dark") document.body.classList.add("theme-dark");
+    themeBtn?.setAttribute(
+        "aria-pressed",
+        document.body.classList.contains("theme-dark") ? "true" : "false"
+    );
+})();
+
+function toggleTheme() {
+    document.body.classList.toggle("theme-dark");
+    const isDark = document.body.classList.contains("theme-dark");
+    localStorage.setItem("quantia_theme", isDark ? "dark" : "light");
+    themeBtn?.setAttribute("aria-pressed", isDark ? "true" : "false");
+}
+
+themeBtn?.addEventListener("click", toggleTheme);
+drawerThemeBtn?.addEventListener("click", () => {
+    toggleTheme();
+    closeDrawer();
+});
+
+backBtn?.addEventListener("click", () => history.back());
+
+menuBtn?.addEventListener("click", () => {
+    if (!isMobile()) return;
+    if (drawer?.classList.contains("is-open")) closeDrawer();
+    else openDrawer();
+});
+
+drawerBackdrop?.addEventListener("click", closeDrawer);
+drawerCloseBtn?.addEventListener("click", closeDrawer);
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+});
+
+function applyLangLabel() {
+    const current = localStorage.getItem("quantia_lang") || "es";
+    const label = current === "es" ? "ES/EN" : "EN/ES";
+    if (langBtn) langBtn.textContent = label;
+    if (drawerLangBtn) drawerLangBtn.textContent = label;
+}
+
+function toggleLang() {
+    const current = localStorage.getItem("quantia_lang") || "es";
+    const next = current === "es" ? "en" : "es";
+    localStorage.setItem("quantia_lang", next);
+    applyLangLabel();
+}
+
+applyLangLabel();
+langBtn?.addEventListener("click", toggleLang);
+drawerLangBtn?.addEventListener("click", () => {
+    toggleLang();
+    closeDrawer();
+});
+
+function normalizeToFile(href) {
+    try {
+        const u = new URL(href, window.location.href);
+        return (u.pathname.split("/").pop() || "").toLowerCase();
+    } catch {
+        return String(href || "").toLowerCase();
     }
+}
 
-    console.log('Form submitted:', {
-        name,
-        email,
-        content
+function setActiveByHref() {
+    const current = normalizeToFile(window.location.href);
+
+    document.querySelectorAll(".nav__btn").forEach((b) => b.classList.remove("is-active"));
+    document.querySelectorAll(".drawer__btn").forEach((b) => b.classList.remove("is-active"));
+
+    document.querySelectorAll(".nav__btn[data-href]").forEach((b) => {
+        const f = normalizeToFile(b.getAttribute("data-href"));
+        if (f && f === current) b.classList.add("is-active");
     });
 
-    alert('Thank you for your message! We will get back to you soon.');
+    document.querySelectorAll(".drawer__btn[data-href]").forEach((b) => {
+        const f = normalizeToFile(b.getAttribute("data-href"));
+        if (f && f === current) b.classList.add("is-active");
+    });
+}
 
-    this.reset();
+function go(href) {
+    if (!href) return;
+    if (isMobile()) closeDrawer();
+    window.location.href = href;
+}
+
+document.querySelectorAll(".nav__btn[data-href]").forEach((btn) => {
+    const href = btn.getAttribute("data-href");
+    btn.addEventListener("click", () => go(href));
 });
 
-window.addEventListener('load', function() {
-    const container = document.querySelector('.contact-container');
-
-    container.style.opacity = '0';
-    container.style.transform = 'translateY(20px)';
-
-    setTimeout(() => {
-        container.style.transition = 'all 0.6s ease';
-        container.style.opacity = '1';
-        container.style.transform = 'translateY(0)';
-    }, 100);
+document.querySelectorAll(".drawer__btn[data-href]").forEach((btn) => {
+    const href = btn.getAttribute("data-href");
+    btn.addEventListener("click", () => go(href));
 });
 
-document.getElementById('email').addEventListener('blur', function() {
-    const emailValue = this.value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (emailValue && !emailRegex.test(emailValue)) {
-        this.style.borderColor = '#ff6b6b';
-        alert('Please enter a valid email address');
-    } else {
-        this.style.borderColor = '';
-    }
+window.addEventListener("resize", () => {
+    if (!isMobile()) closeDrawer();
 });
 
-const contentTextarea = document.getElementById('content');
-const maxLength = 500;
+setActiveByHref();
 
-contentTextarea.addEventListener('input', function() {
-    const currentLength = this.value.length;
 
-    if (currentLength > maxLength) {
-        this.value = this.value.substring(0, maxLength);
-    }
+const form = document.getElementById("contactForm");
+const toast = document.getElementById("toast");
+
+function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("is-show");
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => toast.classList.remove("is-show"), 1700);
+}
+
+function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim());
+}
+
+form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("cName")?.value?.trim();
+    const email = document.getElementById("cEmail")?.value?.trim();
+    const msg = document.getElementById("cMsg")?.value?.trim();
+
+    if (!name || name.length < 2) return showToast("Escribe tu nombre.");
+    if (!email || !isValidEmail(email)) return showToast("Escribe un email válido.");
+    if (!msg || msg.length < 8) return showToast("Cuéntanos un poco más (mín. 8 caracteres).");
+
+    showToast("Mensaje enviado. Te responderemos pronto ✅");
+    form.reset();
 });

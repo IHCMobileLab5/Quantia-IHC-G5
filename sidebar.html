@@ -8,10 +8,10 @@
 </head>
 
 <body class="app-shell">
-<!-- Fondo (como tu fondo3.png) -->
+
 <img class="bg" src="src/public/assets/images/fondo3.png" alt="" aria-hidden="true" draggable="false" />
 
-<!-- Topbar -->
+
 <header class="topbar">
     <button class="topbar__back" id="backBtn" type="button" aria-label="Atrás">
         <span class="topbar__backIcon">‹</span>
@@ -37,7 +37,7 @@
         </button>
 
         <button class="iconBtn iconBtn--menu" id="toggleBtn" type="button" aria-label="Menú" title="Menú">
-            <!-- hamburger -->
+
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 6h16"></path>
                 <path d="M4 12h16"></path>
@@ -47,16 +47,16 @@
     </div>
 </header>
 
-<!-- Backdrop (solo móvil) -->
+
 <div class="backdrop" id="backdrop" aria-hidden="true"></div>
 
-<!-- Sidebar -->
+
 <aside class="sidebar" id="sidebar" aria-label="Navegación">
     <img src="src/public/assets/images/logo.png" alt="Quantia" class="sidebar__logo" draggable="false" />
 
     <nav>
         <ul class="menu">
-            <!-- (cambié a páginas que SÍ existen en tu zip) -->
+
             <li><a data-page="active-details.html">Activos</a></li>
             <li><a data-page="profile.html">Perfil</a></li>
             <li><a data-page="config.html">Configuración</a></li>
@@ -66,9 +66,9 @@
     <button class="sidebar__signout" id="signOutBtn" type="button">Cerrar sesión</button>
 </aside>
 
-<!-- Main -->
+
 <main class="main">
-    <!-- HOME (tu “pantalla 2”) -->
+
     <section class="home" id="home">
         <img class="home__logo" src="src/public/assets/images/logo.png" alt="Quantia" draggable="false" />
         <div class="home__lines" aria-hidden="true">
@@ -76,10 +76,10 @@
         </div>
     </section>
 
-    <!-- Contenido embebido -->
+
     <iframe id="contentFrame" class="content-frame" src="" title="Contenido" hidden></iframe>
 
-    <!-- FABs -->
+
     <button class="fab fab--left" type="button" aria-label="Chat" title="Chat">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M21 14a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"></path>

@@ -28,7 +28,7 @@ toggleBtn?.addEventListener("click", () => {
 
 backdrop?.addEventListener("click", closeSidebar);
 
-/* Cargar página en iframe (y ocultar el home) */
+
 function loadPage(page) {
     if (!page) return;
 
@@ -52,7 +52,6 @@ document.querySelectorAll(".menu a").forEach(link => {
     });
 });
 
-/* Back: si estás en iframe intenta volver; si no, vuelve página */
 backBtn?.addEventListener("click", () => {
     try {
         if (!contentFrame.hidden && contentFrame.contentWindow?.history?.length > 1) {
@@ -63,7 +62,7 @@ backBtn?.addEventListener("click", () => {
     history.back();
 });
 
-/* Theme */
+
 (function initTheme() {
     const saved = localStorage.getItem("quantia_theme");
     if (saved === "dark") document.body.classList.add("theme-dark");
@@ -74,13 +73,13 @@ themeBtn?.addEventListener("click", () => {
     localStorage.setItem("quantia_theme", document.body.classList.contains("theme-dark") ? "dark" : "light");
 });
 
-/* Sign out */
+
 signOutBtn?.addEventListener("click", () => {
     localStorage.removeItem("quantia_user");
     localStorage.removeItem("quantia_last_page");
     window.location.href = "login.html";
 });
 
-/* Si quieres recordar “última página” */
+
 const last = localStorage.getItem("quantia_last_page");
 if (last) loadPage(last);
