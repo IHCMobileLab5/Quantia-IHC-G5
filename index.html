@@ -6,27 +6,25 @@
     <title>Quantia - Invierte con confianza</title>
     <link rel="stylesheet" href="src/public/assets/styles/style.css">
     <link rel="icon" type="image/x-icon" href="src/public/favicon.ico">
+    <link rel="stylesheet" href="src/public/assets/styles/auth.css">
 </head>
 <body>
 
 <header class="header">
-
     <div class="header-left">
         <img src="src/public/assets/images/logo.png" alt="Logo Quantia" class="logo">
     </div>
-
 
     <nav class="nav" id="nav">
         <a href="#hero" class="nav-link active">Inicio</a>
         <a href="#nosotros" class="nav-link">Sobre nosotros</a>
         <a href="#equipo" class="nav-link">Nuestro equipo</a>
         <a href="#contacto" class="nav-link">Contáctanos</a>
+        <a href="terms.html" class="nav-link">Términos y Condiciones</a>
     </nav>
-
 
     <div class="header-right">
         <a href="signin.html" class="btn-signin">Iniciar Sesión</a>
-
         <button id="btn-toggle" class="btn-toggle" aria-label="Abrir menú" aria-expanded="false">
             <span class="line top"></span>
             <span class="line middle"></span>
@@ -34,9 +32,6 @@
         </button>
     </div>
 </header>
-
-
-<div id="overlay" class="overlay"></div>
 
 <main>
 
@@ -61,7 +56,6 @@
         </p>
 
         <div class="about-grid">
-
             <article class="about-card">
                 <span class="about-tag about-tag-mision">Misión</span>
                 <p class="about-text">
@@ -71,7 +65,6 @@
                 <img src="src/public/assets/images/mision.png" alt="Icono misión" class="about-icon">
             </article>
 
-
             <article class="about-card">
                 <span class="about-tag about-tag-vision">Visión</span>
                 <p class="about-text">
@@ -80,7 +73,6 @@
                 </p>
                 <img src="src/public/assets/images/vision.png" alt="Icono visión" class="about-icon">
             </article>
-
 
             <article class="about-card">
                 <span class="about-tag about-tag-valores">Valores</span>
@@ -111,7 +103,6 @@
         </div>
 
         <div class="team-grid">
-
             <article class="team-card">
                 <div class="team-photo-wrapper">
                     <img src="src/public/assets/images/Angelina.png"
@@ -214,7 +205,6 @@
                 </p>
             </article>
 
-
             <article class="team-card">
                 <div class="team-photo-wrapper">
                     <img src="src/public/assets/images/Pool.jpg"
@@ -242,18 +232,21 @@
         <div class="contact-wrapper">
             <form class="contact-card">
                 <div class="contact-row">
+
                     <label for="nombre">Nombres</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Ingresa tus nombres">
                 </div>
 
                 <div class="contact-row">
                     <label for="correo">Correo electrónico</label>
+
                     <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo">
                 </div>
 
                 <div class="contact-row">
                     <label for="asunto">Asunto</label>
                     <input type="text" id="asunto" name="asunto" placeholder="¿Sobre qué quieres hablar?">
+
                 </div>
 
                 <div class="contact-row">
@@ -266,6 +259,42 @@
         </div>
     </section>
 </main>
+
+
+
+<main class="legal-container">
+    <h1 class="legal-title">Términos y Condiciones de Servicio de Quantia</h1>
+
+    <p class="legal-date">Última actualización: Noviembre 2025</p>
+
+    <section class="legal-section">
+        <h2>1. Aceptación de los Términos</h2>
+        <p>Al acceder o utilizar la plataforma Quantia, usted acepta estar legalmente vinculado por estos Términos y Condiciones de Servicio. Si no está de acuerdo con alguna parte de los términos, no debe utilizar nuestra plataforma. </p>
+    </section>
+
+    <section class="legal-section">
+        <h2>2. Servicios Ofrecidos</h2>
+        <p>Quantia ofrece herramientas de asesoría de inversión impulsada por IA, educación financiera y gestión de portafolio, incluyendo simuladores y alertas. Los servicios están diseñados para fines educativos e informativos y no constituyen asesoría de inversión directa.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>3. Cuentas de Usuario y Seguridad</h2>
+        <p>Usted es responsable de mantener la confidencialidad de sus credenciales y de todas las actividades que ocurran bajo su cuenta.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>4. Restricciones y Uso Prohibido</h2>
+        <p>No podrá utilizar la plataforma para ninguna actividad ilegal o no autorizada.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>5. Limitación de Responsabilidad</h2>
+        <p>Quantia no garantiza resultados de inversión y el usuario asume el riesgo de las operaciones.</p>
+    </section>
+
+</main>
+
+
 
 
 <footer class="footer">
@@ -305,9 +334,12 @@
             </ul>
         </div>
 
+
         <div class="footer-legal">
             <p class="footer-title">Información Legal</p>
+
             <ul class="legal-list">
+                <li><a href="terms.html" class="legal-link">Términos y Condiciones</a></li>
                 <li><a href="#" class="legal-link">Aviso Legal</a></li>
                 <li><a href="#" class="legal-link">Política de Cookies</a></li>
                 <li><a href="privacy-policy.html" class="legal-link">Política de Privacidad</a></li>
@@ -315,12 +347,12 @@
         </div>
     </div>
 
+
     <div class="footer-bottom">
         <small>© 2025 Quantia. Todos los derechos reservados.</small>
     </div>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="src/public/assets/scripts/main.js"></script>
 </body>
 </html>
-

@@ -169,10 +169,36 @@ function setupSignupForm(supabaseClient) {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.querySelector('#signup-email').value;
-        const password = document.querySelector('#signup-password').value;
 
-        const { error } = await supabaseClient.auth.signUp({ email, password });
+        const emailInput = document.querySelector('#signup-email');
+        const passwordInput = document.querySelector('#signup-password');
+        const errorElement = document.querySelector('#password-error');
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // --- VALIDACIÓN US001 ---
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        if (!passwordRegex.test(password)) {
+            errorElement.textContent =
+                'La contraseña debe tener 8 o más caracteres e incluir letras y números.';
+            passwordInput.focus();
+            return;
+        } else {
+            errorElement.textContent = '';
+        }
+        // --- FIN VALIDACIÓN US001 ---
+
+
+        // --- Registro en Supabase ---
+        const { error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: window.location.origin + '/profile.html'
+            }
+        });
 
         if (error) {
             alert('Error al registrarse: ' + error.message);
@@ -181,6 +207,7 @@ function setupSignupForm(supabaseClient) {
         }
     });
 }
+
 
 
 function setupLoginForm(supabaseClient) {
