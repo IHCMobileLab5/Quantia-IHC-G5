@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Quantia — Iniciar sesión</title>
 
-    <!-- Estilos -->
     <link rel="stylesheet" href="src/public/assets/styles/login.css" />
     <link rel="icon" href="src/public/favicon.ico" />
 </head>
-<body>
 
-<!-- Moneda decorativa fija -->
-<img class="coin-deco" src="/src/public/assets/images/moneda.png" alt="" aria-hidden="true" />
+<body>
+<img
+        class="coin-deco"
+        src="src/public/assets/images/moneda.png"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+/>
 
 <main class="login-layout">
-    <!-- Columna izquierda: formulario -->
     <section class="auth-card" aria-labelledby="titulo-login">
         <h1 id="titulo-login" class="auth-title">Iniciar sesión</h1>
 
-        <form class="auth-form" action="#" method="post" novalidate>
+        <form class="auth-form" novalidate>
             <label class="field">
                 <span class="label">Correo electrónico</span>
                 <input
@@ -49,14 +52,13 @@
                     <span>Recordar contraseña</span>
                 </label>
 
-                <a class="link" href="#">Restablecer contraseña</a>
+                <!-- ✅ evita # (no cambia la URL a login.html#) -->
+                <a class="link" href="config.html">Restablecer contraseña</a>
             </div>
 
             <button class="btn btn-primary" type="submit">Iniciar sesión</button>
 
-            <div class="divider">
-                <span>o</span>
-            </div>
+            <div class="divider"><span>o</span></div>
 
             <a class="btn btn-outline" href="register.html">Registrarse</a>
 
@@ -69,13 +71,59 @@
         </form>
     </section>
 
-    <!-- Columna derecha: logo -->
     <aside class="brand-card" aria-hidden="true">
         <div class="brand-card__inner">
-            <img src="/src/public/assets/images/logo.png" class="brand-logo" alt="Logo de Quantia" />
+            <img
+                    src="src/public/assets/images/logo.png"
+                    class="brand-logo"
+                    alt="Logo de Quantia"
+                    draggable="false"
+            />
         </div>
     </aside>
 </main>
 
+<script>
+    const API = "http://localhost:3000/api/v1";
+    const form = document.querySelector(".auth-form");
+
+    const DASHBOARD_URL = new URL("dashboard.html", window.location.href).toString();
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const emailInput = form.querySelector('input[name="email"]');
+        const passInput = form.querySelector('input[name="password"]');
+
+        const email = (emailInput?.value || "").trim();
+        const password = passInput?.value || "";
+
+        if (!email || !password) {
+            alert("Completa correo y contraseña.");
+            return;
+        }
+
+        try {
+            const url =
+                `${API}/users?email=${encodeURIComponent(email)}` +
+                `&password=${encodeURIComponent(password)}`;
+
+            const res = await fetch(url, { cache: "no-store" });
+            if (!res.ok) throw new Error("No se pudo conectar con la API (json-server).");
+
+            const users = await res.json();
+            if (!Array.isArray(users) || users.length === 0) {
+                throw new Error("Correo o contraseña incorrectos.");
+            }
+
+            localStorage.setItem("quantia_user", JSON.stringify(users[0]));
+
+
+            window.location.assign(DASHBOARD_URL);
+        } catch (err) {
+            alert(err?.message || "Error al iniciar sesión.");
+        }
+    });
+</script>
 </body>
 </html>
