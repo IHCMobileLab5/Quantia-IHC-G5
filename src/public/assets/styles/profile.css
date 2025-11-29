@@ -22,7 +22,7 @@ body {
     margin: 0 auto;
     position: relative;
     z-index: 2;
-    max-width: 1200px;
+    max-width: 1000px;
     padding-bottom: 20px;
 }
 
@@ -39,19 +39,22 @@ body {
     pointer-events: none;
 }
 
-header {
+.header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    gap: 20px;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.back {
+    font-size: 32px;
+    cursor: pointer;
 }
 
 h1 {
-    font-size: 24px;
-    color: #2c3e50;
+    font-size: 32px;
     font-weight: 700;
 }
-
 .content {
     width: 1000px;
     max-width: 100%;

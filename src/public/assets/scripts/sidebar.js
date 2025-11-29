@@ -12,10 +12,3 @@ document.querySelectorAll(".menu a").forEach(link => {
         contentFrame.src = page;
     });
 });
-
-window.addEventListener("DOMContentLoaded", () => {
-    contentFrame.src = "profile.html";
-
-    const defaultLink = document.querySelector('.menu a[data-page="profile.html"]');
-    if (defaultLink) defaultLink.classList.add("active");
-});
