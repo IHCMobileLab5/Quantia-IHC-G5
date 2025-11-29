@@ -5,18 +5,11 @@
 }
 
 body{
-    /* Usamos una fuente más moderna y limpia */
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f7f9fc; /* Fondo blanco roto, más suave que el blanco puro */
-    color: #1a1a1a; /* Texto principal más oscuro */
-    line-height: 1.5; /* Mejora la legibilidad */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+    background-color: #ffffff;
+    color: #111827;
 }
-/* Restaura el box-sizing (línea 126) */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 /* ================= HEADER ================= */
 
 .header{
@@ -24,12 +17,12 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    height: 72px;
+    height: 80px;
     padding: 0 48px;
     background-color: #ffffff;
     display: flex;
     align-items: center;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     z-index: 1000;
 }
 
@@ -53,22 +46,19 @@ body{
 
 .nav-link{
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    color: #4b5563;
+    font-size: 16px;
+    color: #111827;
     padding-bottom: 6px;
-    border-bottom: 3px solid transparent;
+    border-bottom: 2px solid transparent;
     transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .nav-link:hover{
-    color: #2971B8; /* Mantiene el hover azul */
-    border-bottom-color: #2971B8; /* Añade color al hover */
+    color: #2971B8;
 }
 
 .nav-link.active{
-    border-bottom-color: #111827; /* Mantiene el activo */
-    color: #111827;
+    border-bottom-color: #111827;
 }
 
 
@@ -81,7 +71,7 @@ body{
 
 .btn-signin{
     display: inline-block;
-    padding: 10px 24px;
+    padding: 10px 32px;
     background-color: #2971B8;
     color: #ffffff;
     text-decoration: none;
@@ -89,7 +79,6 @@ body{
     font-weight: 600;
     font-size: 16px;
     transition: background-color 0.25s ease, transform 0.15s ease;
-    box-shadow: 0 4px 8px rgba(41, 113, 184, 0.2); /* Sombra enfocada en el color primario */
 }
 
 .btn-signin:hover{
@@ -153,9 +142,9 @@ body{
 /* ================= HERO ================= */
 
 .hero{
-    margin-top: 72px;
+    margin-top: 80px;
     min-height: calc(100vh - 80px);
-    padding: 100px 80px 72px;
+    padding: 80px 80px 72px;
     display: flex;
     align-items: center;
 
@@ -170,31 +159,31 @@ body{
 }
 
 .hero-text h1{
-    font-size: 56px; /* Hacemos el título más grande e impactante */
-    line-height: 1.1;
-    font-weight: 800; /* Más audaz */
+    font-size: 48px;
+    line-height: 1.15;
+    font-weight: 700;
     color: #111111;
     margin-bottom: 24px;
 }
 
 .hero-text p{
-    font-size: 18px; /* Texto descriptivo más grande */
+    font-size: 16px;
     line-height: 1.6;
     color: #4b5563;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 
 .btn-primary{
     display: inline-block;
-    padding: 14px 40px;
+    padding: 16px 40px;
     background-color: #E69548;
     color: #ffffff;
     text-decoration: none;
     border-radius: 999px;
     font-weight: 600;
     font-size: 16px;
-    box-shadow: 0 8px 16px rgba(230, 149, 72, 0.3);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
     transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
@@ -214,19 +203,19 @@ body{
     background-color: #ffffff;
 }
 
-.about-title {
-    font-size: 36px; /* Título ligeramente más grande */
-    font-weight: 800;
-    margin-bottom: 24px;
+.about-title{
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
     color: #111827;
 }
 
-.about-subtitle {
-    font-size: 16px; /* Texto un poco más grande para mejor lectura */
-    line-height: 1.8; /* Aumenta el espaciado entre líneas */
+.about-subtitle{
+    font-size: 15px;
+    line-height: 1.7;
     color: #4b5563;
     max-width: 900px;
-    margin: 0 auto 40px; /* Más margen inferior para separarlo del grid */
+    margin: 0 auto 32px;
 }
 
 .about-grid{
@@ -238,28 +227,23 @@ body{
 }
 
 
-.about-card {
+.about-card{
     background-color: #ffffff;
-    padding: 30px 24px;
-    border-radius: 16px;
-    /* Sombra más definida */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    padding: 24px 24px 26px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    /* Eliminamos el borde, la sombra lo reemplaza */
-    border: none;
-    transition:
-            transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), /* Transición más suave */
-            box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-align: center;
-}
 
-.about-card.show:hover {
-    transform: translateY(-8px); /* Más desplazamiento para que flote */
-    /* Sombra más fuerte y con un toque de color para el efecto */
-    box-shadow: 0 16px 35px rgba(41, 113, 184, 0.2);
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+            opacity 0.35s ease,
+            transform 0.35s ease,
+            box-shadow 0.35s ease,
+            background-color 0.35s ease;
 }
 
 
@@ -270,45 +254,38 @@ body{
 
 
 .about-card.show:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
 
-.about-tag {
-    /* Eliminamos el fondo sólido de la etiqueta */
-    background-color: transparent;
-    /* Usamos el color de marca para el texto */
-    color: #2971B8;
-    font-weight: 700;
-    border: 2px solid; /* Añadimos un borde de color */
-    padding: 6px 16px;
+.about-tag{
+    padding: 6px 18px;
     border-radius: 999px;
+    color: #ffffff;
+    font-weight: 600;
     font-size: 13px;
-    transition: all 0.3s ease;
+    display: inline-block;
+    transition: transform 0.25s ease;
 }
 
-/* Colores específicos de las etiquetas (solo cambian el color del borde) */
-.about-tag-mision {
-    border-color: #2971B8; /* Azul */
-    color: #2971B8;
+.about-tag-mision{
+    background-color: #2971B8;
 }
 
-.about-tag-vision {
-    border-color: #2DA88E; /* Verde */
-    color: #2DA88E;
+.about-tag-vision{
+    background-color: #2DA88E;
 }
 
-.about-tag-valores {
-    border-color: #E69548; /* Naranja */
-    color: #E69548;
+.about-tag-valores{
+    background-color: #2971B8;
 }
 
-.about-text {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #4b5563;
-    text-align: center; /* Centramos el texto dentro de la tarjeta */
+.about-text{
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
+    text-align: left;
 }
 
 .about-icon{
@@ -323,22 +300,10 @@ body{
     transform: translateY(-2px);
 }
 
-.about-card.show:hover {
-    transform: translateY(-8px);
-    /* 1. Sombra principal de elevación (gris) */
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.1),
-        /* 2. AÑADIR SOMBRA DE BRILLO (GLOW) AZUL */
-    0 0 18px rgba(41, 113, 184, 0.6);
-    /* El último valor (0.6) controla la intensidad del brillo. */
+.about-card.show:hover .about-icon{
+    transform: scale(1.06);
 }
 
-#nosotros,
-#equipo,
-#contacto {
-    /* Altura del Header (72px) + Margen de seguridad (18px) = 90px */
-    padding-top: 1px;
-    margin-top: -1px;
-}
 .about-cta{
     margin-bottom: 20px;
 }
@@ -409,23 +374,19 @@ body{
 .team-card{
     background-color: #ffffff;
     padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    border: 1px solid #e5e7eb;
 }
 
 .team-card:hover{
-    transform: translateY(-8px); /* Más desplazamiento para dinamismo */
-    /* Sombra que simula flotar */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    /* Borde que se intensifica al hacer hover */
-    border-color: #2971B8;
+    transform: translateY(-8px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
 .team-photo-wrapper{
@@ -433,16 +394,7 @@ body{
     height: 120px;
     border-radius: 999px;
     overflow: hidden;
-    /* AÑADE UN ANILLO DE COLOR ALREDEDOR DE LA FOTO */
-    box-shadow: 0 0 0 4px #E69548, /* Anillo naranja (Marca) */
-    0 4px 12px rgba(0,0,0,0.1); /* Sombra regular */
-    transition: box-shadow 0.3s ease;
-}
-
-.team-card:hover .team-photo-wrapper {
-    /* El anillo se agranda ligeramente al hacer hover */
-    box-shadow: 0 0 0 6px #E69548,
-    0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .team-photo{
@@ -450,35 +402,9 @@ body{
     height: 100%;
     object-fit: cover;
     display: block;
-    /* Filtro para un toque más dramático */
-    filter: grayscale(10%);
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-.team-card:hover .team-photo{
-    transform: scale(1.05);
-    filter: grayscale(0%); /* El color vuelve al 100% al pasar el mouse */
+    transition: transform 0.25s ease;
 }
 
-.team-role {
-    font-size: 14px;
-    font-weight: 700; /* Lo hacemos más fuerte */
-    color: #E69548; /* Usamos el color de marca para el rol */
-    margin-bottom: -5px; /* Acercamos al nombre */
-}
-/* Nuevo estilo para el Nombre */
-.team-name {
-    font-size: 20px;
-    font-weight: 800;
-    color: #111827;
-    line-height: 1.2;
-}
-
-/* Descripción */
-.team-description {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #4b5563; /* Gris más suave para el cuerpo del texto */
-}
 /* ================= CONTACTO ================= */
 
 .contact{
@@ -507,12 +433,11 @@ body{
     width: 420px;
     background-color: #ffffff;
     padding: 28px 32px 26px;
-    border-radius: 20px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* Sombra más fuerte para destacarse */
+    border-radius: 26px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.16);
     display: flex;
     flex-direction: column;
     gap: 14px;
-    border: none;
 }
 
 .contact-row{
@@ -530,23 +455,15 @@ body{
 .contact-card input,
 .contact-card textarea{
     width: 100%;
-    border: 1px solid #d1d5db; /* AÑADIDO: Borde sutil y claro */
+    border: none;
     outline: none;
-    background-color: #ffffff; /* CAMBIO: Fondo blanco */
-    padding: 12px 16px; /* Más padding para mayor altura */
-    border-radius: 8px; /* Bordes menos redondeados, más profesionales */
-    font-size: 15px;
+    background-color: #f2f2f2;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
     font-family: inherit;
     color: #333333;
     resize: vertical;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-card input:focus,
-.contact-card textarea:focus {
-    /* Efecto al enfocar: resalta el borde con el azul de la marca */
-    border-color: #2971B8;
-    box-shadow: 0 0 0 3px rgba(41, 113, 184, 0.1);
 }
 
 .contact-card textarea{
@@ -554,34 +471,33 @@ body{
 }
 
 .contact-btn{
-    margin-top: 15px; /* Más espacio */
+    margin-top: 10px;
     width: 100%;
-    padding: 14px 0; /* Un poco más alto */
+    padding: 10px 0;
     border: none;
     border-radius: 999px;
-    background-color: #2971B8; /* CAMBIO: Color Principal de Marca (Azul) */
+    background-color: #212426;
     color: #ffffff;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 15px;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(41, 113, 184, 0.3); /* Sombra azul más definida */
     transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
 }
 
 .contact-btn:hover{
-    background-color: #225f99; /* Azul más oscuro */
-    transform: translateY(-2px); /* Ligeramente más elevado */
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    background-color: #111111;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
 }
+
 /* ================= FOOTER ================= */
 .footer-container{
-    padding: 60px 80px;
-    background-color: #f7f9fc;
+    padding: 48px 80px 48px;
+    background-color: #f9f9f9;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 32px;
-
 }
 
 /* ================= FOOTER SECTIONS ================= */
@@ -715,8 +631,7 @@ body{
     font-size: 15px;
     color: #6b7280;
     text-align: center;
-    background-color: #f7f9fc; /* Mismo gris suave */
-    padding-top: 0;
+    background-color: #f9f9f9;
 }
 
 @media (max-width: 480px){
@@ -807,8 +722,6 @@ body{
     .about-card{
         align-items: center;
         text-align: center;
-        position: relative; /* CRÍTICO: Permite posicionar el ::before */
-        overflow: hidden; /* Asegura que la línea solo aparezca en el borde */
     }
 
     .about-text{
@@ -828,22 +741,12 @@ body{
     }
 
     .contact-wrapper{
-        display: flex;
-        /* CAMBIO: Centrar el formulario en lugar de empujarlo a la derecha */
         justify-content: center;
     }
 
     .contact-card{
-        width: 420px;
-        background-color: #ffffff;
-        /* Ligeramente más padding para que respire */
-        padding: 35px 38px 32px;
-        border-radius: 16px; /* Bordes un poco menos agresivos */
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Sombra más sutil y limpia */
-        display: flex;
-        flex-direction: column;
-        gap: 16px; /* Aumentamos ligeramente el espacio entre filas */
-        border: none;
+        width: 100%;
+        max-width: 420px;
     }
 
     /* FOOTER */
@@ -891,12 +794,8 @@ body{
     }
 
     /* TEAM */
-    .team{
-        padding: 72px 80px 72px;
-        max-width: 100%;
-        margin: 0 auto;
-        /* CAMBIO DE FONDO: Usa un azul muy claro, casi blanco */
-        background-color: #e9f5ff;
+    .team {
+        padding: 56px 40px 56px;
     }
 
     .team-grid{
@@ -1074,343 +973,6 @@ body{
     }
 
     .team-card{
-        background-color: #ffffff;
-        padding: 24px;
-        border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Sombra más definida */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        /* BORDE INICIAL SUTIL CON EL COLOR DE LA MARCA */
-        border: 2px solid rgba(41, 113, 184, 0.15);
+        padding: 20px;
     }
-}
-
-/* ================= FORMULARIOS (LOGIN / REGISTRO) ================= */
-
-/* Estilos generales del formulario */
-.auth-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-
-.auth-card {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.auth-card h1 {
-    margin-bottom: 8px;
-    font-size: 28px;
-}
-
-.auth-card p {
-    color: #6b7280;
-    margin-bottom: 20px;
-}
-
-/* Inputs */
-.form-row {
-    margin-bottom: 16px;
-    text-align: left;
-}
-
-.form-row label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.form-row input {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-/* Password con icono */
-.password-wrapper {
-    position: relative;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #2971B8;
-    cursor: pointer;
-}
-
-/* Mensaje de error */
-.error-message {
-    color: #ef4444;
-    font-size: 12px;
-    margin-top: 4px;
-    font-weight: 500;
-}
-
-/* Botón de login */
-.auth-btn {
-    margin-top: 10px;
-    width: 100%;
-    padding: 12px 0;
-    border: none;
-    border-radius: 10px;
-    background-color: #2971B8;
-    color: #ffffff;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* Enlace para ir al login */
-.login-link {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.login-link a {
-    color: #2971B8;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
-/* ================= HEADER ================= */
-
-/* Modificación para Header-Right: Añadir flex para que los dos botones estén lado a lado */
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 16px; /* Espacio entre los enlaces */
-}
-
-
-/* --- Nuevo estilo para el botón/link secundario (Registro) --- */
-.btn-secondary {
-    text-decoration: none;
-    font-size: 16px;
-    color: #4b5563; /* Color de texto oscuro */
-    padding: 10px 15px; /* Padding para que parezca un botón sutil */
-    border-radius: 8px;
-    font-weight: 600;
-    transition: color 0.2s ease;
-}
-
-.btn-secondary:hover {
-    color: #2971B8; /* Color azul al pasar el ratón */
-}
-
-
-.auth-header-decor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50; /* Detrás de la tarjeta */
-    /* Aquí debes añadir la imagen de fondo con las formas y el sol.
-       Esto es un ejemplo: necesitarás crear o conseguir la imagen 'bg-signup.png' */
-    background-image: url("src/public/assets/images/bg-signup.png");
-    background-size: cover;
-    background-position: top left;
-}
-
-.auth-decor-logo {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    height: 40px; /* Tamaño del logo en la esquina */
-}
-
-/* Tarjeta del formulario */
-.new-design-card {
-    /* Sobrepasa las propiedades de .auth-card original */
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 360px; /* Más estrecho que el diseño original */
-    padding: 0 30px 40px; /* Padding ajustado para el avatar */
-    position: relative;
-    z-index: 100;
-    margin-top: 100px; /* Espacio para el avatar */
-}
-
-/* Avatar/Imagen Central */
-.auth-avatar-wrapper {
-    position: absolute;
-    top: -60px; /* Sube la imagen fuera de la tarjeta */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    background-color: #f0f0f0;
-}
-
-.auth-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.new-design-card h2 {
-    margin-top: 70px; /* Espacio debajo del avatar */
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-/* Formulario */
-.new-design-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.new-input {
-    /* Contenedor del input y el ícono */
-    position: relative;
-    margin-bottom: 0;
-    border-bottom: 1px solid #ddd;
-    padding-top: 5px; /* Ajuste para el estilo de línea */
-}
-
-.new-input input {
-    /* Input sin bordes, solo línea inferior */
-    width: 100%;
-    padding: 10px 10px 10px 30px; /* Espacio a la izquierda para el ícono */
-    border: none;
-    border-radius: 0;
-    font-size: 16px;
-    background: none;
-    outline: none;
-    color: #555;
-}
-
-.icon-input {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px; /* Tamaño del ícono */
-    color: #E69548; /* Color naranja (similar al de la imagen) */
-    pointer-events: none; /* Asegura que el ícono no bloquee el clic */
-}
-
-/* Estilo del botón SIGN UP (diferente al btn-primary) */
-.sign-up-btn {
-    width: 100%;
-    padding: 15px 0;
-    background-color: #363636; /* Color oscuro */
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 25px;
-    transition: background-color 0.2s;
-}
-
-.sign-up-btn:hover {
-    background-color: #1a1a1a;
-}
-
-/* Checkbox de términos */
-.terms-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #777;
-    margin-top: 10px;
-}
-
-.terms-checkbox input[type="checkbox"] {
-    width: 14px;
-    height: 14px;
-}
-
-/* Ocultar el link de Iniciar Sesión de tu diseño anterior, ya que no está en el nuevo diseño */
-.login-link {
-    display: none;
-}
-
-/* (El estilo .btn-signin ya está definido y no cambia) */
-
-/* ==================== ESTILOS ADICIONALES LOGIN ==================== */
-
-/* Opciones de Login (Remember Me / Forgot Password) */
-.login-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 13px;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #555;
-}
-
-.remember-me input[type="checkbox"] {
-    width: 14px;
-    height: 14px;
-    /* Estilo del checkbox (similar al del diseño) */
-    accent-color: #E69548;
-}
-
-.forgot-password,
-.signup-link a {
-    color: #E69548; /* Color naranja de la marca */
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.forgot-password:hover,
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-/* Enlace a Registro debajo del botón */
-.signup-link {
-    margin-top: 25px;
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-}
-
-/* El ícono de toggle para mostrar/ocultar contraseña en el nuevo diseño */
-.new-input .icon-toggle {
-    right: 10px; /* Posicionarlo a la derecha del campo */
-    left: auto; /* Anula el left: 0 del icon-input general */
-    font-size: 14px;
-    color: #555;
-    cursor: pointer;
 }
