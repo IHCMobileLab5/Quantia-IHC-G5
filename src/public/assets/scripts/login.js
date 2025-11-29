@@ -1,7 +1,4 @@
-
 const API = "http://localhost:3000/api/v1";
-
-
 const form = document.querySelector(".auth-form");
 
 if (form) {
@@ -11,7 +8,6 @@ if (form) {
 
         const emailInput = form.querySelector('input[name="email"]');
         const passInput = form.querySelector('input[name="password"]');
-
         const email = (emailInput?.value || "").trim();
         const password = passInput?.value || "";
 

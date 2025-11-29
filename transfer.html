@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Quantia — Transferencia</title>
+    <link rel="stylesheet" href="src/public/assets/styles/transfer.css" />
+</head>
+
+<body class="transfer">
+<div class="q-sun" aria-hidden="true"></div>
+
+
+<header class="q-top">
+    <div class="q-left">
+        <button class="q-back" id="backBtn" type="button" aria-label="Atrás">
+            ← <span>ATRÁS</span>
+        </button>
+
+        <button class="q-hamburger" id="menuBtn" type="button" aria-label="Abrir menú">
+            ☰
+        </button>
+    </div>
+
+    <nav class="q-nav" aria-label="Menú principal">
+        <button class="nav__btn" type="button" data-href="dashboard.html">Inicio</button>
+        <button class="nav__btn" type="button" data-href="portfolio.html">Portafolio</button>
+        <button class="nav__btn" type="button" data-href="market.html">Mercados</button>
+        <button class="nav__btn is-active" type="button" data-href="transfer.html">Transferencia</button>
+        <button class="nav__btn" type="button" data-href="contact.html">Contacto</button>
+        <button class="nav__btn nav__btn--lang" id="langBtn" type="button">ES/EN</button>
+    </nav>
+
+    <div class="q-right">
+        <button class="q-alert" type="button" aria-label="Alertas">⚠</button>
+
+        <button class="q-theme" id="themeBtn" type="button" aria-label="Cambiar tema" aria-pressed="false">
+            <span class="q-theme__knob" aria-hidden="true"></span>
+            <span class="q-theme__icon q-theme__sun" aria-hidden="true">☀</span>
+            <span class="q-theme__icon q-theme__moon" aria-hidden="true">☾</span>
+        </button>
+    </div>
+</header>
+
+
+<div class="q-drawerBackdrop" id="drawerBackdrop" aria-hidden="true"></div>
+<aside class="q-drawer" id="drawer" aria-label="Menú móvil">
+    <div class="q-drawerTop">
+        <div class="q-drawerTitle">Quantia</div>
+        <button class="q-drawerClose" id="drawerCloseBtn" type="button" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="q-drawerBtns">
+        <button class="drawer__btn" type="button" data-href="dashboard.html">Inicio</button>
+        <button class="drawer__btn" type="button" data-href="portfolio.html">Portafolio</button>
+        <button class="drawer__btn" type="button" data-href="market.html">Mercados</button>
+        <button class="drawer__btn is-active" type="button" data-href="transfer.html">Transferencia</button>
+        <button class="drawer__btn" type="button" data-href="contact.html">Contacto</button>
+        <button class="drawer__btn drawer__btn--lang" id="drawerLangBtn" type="button">ES/EN</button>
+    </div>
+</aside>
+
+
+<main class="t-wrap">
+    <header class="t-head">
+        <h1 class="t-title">Fondos</h1>
+
+        <div class="t-tabs" role="tablist" aria-label="Transferencias">
+            <button class="t-tab is-active" type="button" data-tab="deposit" role="tab" aria-selected="true">Depositar</button>
+            <button class="t-tab" type="button" data-tab="withdraw" role="tab" aria-selected="false">Retirar</button>
+            <button class="t-tab" type="button" data-tab="saved" role="tab" aria-selected="false">Métodos guardados</button>
+            <button class="t-tab" type="button" data-tab="history" role="tab" aria-selected="false">Historial</button>
+        </div>
+    </header>
+
+
+    <section class="t-panel is-show" id="depositPanel" role="tabpanel" aria-label="Depositar">
+        <div class="t-grid">
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Depositar por tarjeta</h2>
+
+                <div class="t-form">
+                    <label class="t-field">
+                        <span>Número de tarjeta</span>
+                        <input id="cardNumber" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" />
+                    </label>
+
+                    <div class="t-row2">
+                        <label class="t-field">
+                            <span>Fecha de vencimiento</span>
+                            <input id="cardExp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" />
+                        </label>
+                        <label class="t-field">
+                            <span>CVV</span>
+                            <input id="cardCvv" type="password" inputmode="numeric" autocomplete="cc-csc" placeholder="***" maxlength="4" />
+                        </label>
+                    </div>
+
+                    <label class="t-field">
+                        <span>Monto (USD)</span>
+                        <input id="cardAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" />
+                    </label>
+
+                    <button class="t-cta" id="cardDepositBtn" type="button">Depositar</button>
+                    <p class="t-hint">El monto neto se acreditará instantáneamente (demo).</p>
+                </div>
+            </section>
+
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Depósito por transferencia bancaria</h2>
+
+                <div class="t-bank">
+                    <label class="t-field">
+                        <span>Monto (USD)</span>
+                        <input id="bankAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" />
+                    </label>
+
+                    <div class="t-bankInfo">
+                        <div class="t-bankMeta">
+                            <div class="t-bankLine"><b>Beneficiario:</b> Quantia Demo</div>
+                            <div class="t-bankLine"><b>Banco:</b> Banco Demo</div>
+                            <div class="t-bankLine"><b>Referencia:</b> <span id="bankRef">QNT-392814</span></div>
+                            <div class="t-bankLine t-bankSmall">Se requieren <b>1 confirmación</b> (demo).</div>
+                        </div>
+
+                        <div class="t-qr" aria-label="QR de transferencia">
+                            <img
+                                    class="t-qrImg"
+                                    src="src/public/assets/images/qr.png"
+                                    alt="QR de pago (demo)"
+                                    loading="lazy"
+                                    decoding="async"
+                            />
+                            <div class="t-qrText">Escanea para pagar</div>
+                        </div>
+                    </div>
+
+                    <button class="t-cta t-cta--soft" id="bankDepositBtn" type="button">Depositar</button>
+                </div>
+            </section>
+
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Depósito de criptomonedas</h2>
+
+                <div class="t-form">
+                    <label class="t-field">
+                        <span>Red</span>
+                        <select id="cryptoNetwork">
+                            <option value="usdt-trc20">USDT (TRC20)</option>
+                            <option value="usdt-erc20">USDT (ERC20)</option>
+                            <option value="btc">BTC</option>
+                            <option value="eth">ETH</option>
+                        </select>
+                    </label>
+
+                    <label class="t-field">
+                        <span>Dirección</span>
+                        <input id="cryptoAddress" type="text" value="TQnTiaDemoAddr_8x7k...9p" readonly />
+                    </label>
+
+                    <div class="t-actions">
+                        <button class="t-btn" id="copyAddrBtn" type="button">Copiar</button>
+                        <button class="t-btn t-btn--ghost" id="newAddrBtn" type="button">Nueva dirección</button>
+                    </div>
+
+                    <p class="t-hint">Se requieren <b>1 confirmación</b> (demo).</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section class="t-panel" id="withdrawPanel" role="tabpanel" aria-label="Retirar">
+        <div class="t-grid t-grid--two">
+            <section class="t-card">
+                <h2 class="t-cardTitle">Retiro a cuenta bancaria</h2>
+
+                <div class="t-form">
+                    <label class="t-field">
+                        <span>Cuenta bancaria</span>
+                        <input id="wdBankAccount" type="text" placeholder="IBAN / N° Cuenta" value="FAVORITA" />
+                    </label>
+
+                    <label class="t-field">
+                        <span>Monto (USD)</span>
+                        <input id="wdBankAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" />
+                    </label>
+
+                    <div class="t-actions">
+                        <button class="t-cta" id="withdrawBankBtn" type="button">Retirar</button>
+                        <button class="t-btn t-btn--ghost" id="verify2faBtn1" type="button">Verificar 2FA</button>
+                    </div>
+
+                    <p class="t-hint">Tiempo estimado: 1–2 días hábiles (demo).</p>
+                </div>
+            </section>
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Retiro cripto</h2>
+
+                <div class="t-form">
+                    <label class="t-field">
+                        <span>Activo</span>
+                        <select id="wdCryptoAsset">
+                            <option value="usdt">USDT</option>
+                            <option value="btc">BTC</option>
+                            <option value="eth">ETH</option>
+                        </select>
+                    </label>
+
+                    <label class="t-field">
+                        <span>Dirección destino</span>
+                        <input id="wdCryptoTo" type="text" placeholder="Dirección wallet" />
+                    </label>
+
+                    <label class="t-field">
+                        <span>Monto</span>
+                        <input id="wdCryptoAmount" type="number" inputmode="decimal" min="0" step="0.0001" placeholder="0.00" />
+                    </label>
+
+                    <div class="t-actions">
+                        <button class="t-cta" id="withdrawCryptoBtn" type="button">Retirar</button>
+                        <button class="t-btn t-btn--ghost" id="verify2faBtn2" type="button">Verificar 2FA</button>
+                    </div>
+
+                    <p class="t-hint">Confirma en tu 2FA antes de enviar (demo).</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section class="t-panel" id="savedPanel" role="tabpanel" aria-label="Métodos guardados">
+        <div class="t-grid t-grid--two">
+            <section class="t-card">
+                <h2 class="t-cardTitle">Gestión de métodos de retiro</h2>
+
+                <div class="t-form">
+                    <label class="t-field">
+                        <span>Cuenta bancaria (alias)</span>
+                        <input id="savedAlias" type="text" value="FAVORITA" />
+                    </label>
+
+                    <label class="t-field">
+                        <span>Cuenta / IBAN</span>
+                        <input id="savedIban" type="text" placeholder="PE00 0000 0000 0000 0000 00" />
+                    </label>
+
+                    <div class="t-actions">
+                        <button class="t-cta" id="saveMethodBtn" type="button">Guardar método</button>
+                        <button class="t-btn t-btn--ghost" id="verify2faBtn3" type="button">Verificar 2FA</button>
+                    </div>
+
+                    <p class="t-hint">Marca uno como “Favorita” para retiros rápidos (demo).</p>
+                </div>
+            </section>
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Tus métodos guardados</h2>
+
+                <div class="t-list" id="savedList">
+                    <div class="t-item">
+                        <div>
+                            <div class="t-itemTop">FAVORITA <span class="t-badge">Banco</span></div>
+                            <div class="t-itemSub">**** 1289 — Banco Demo</div>
+                        </div>
+                        <button class="t-iconBtn" type="button" data-action="delete" aria-label="Eliminar">🗑</button>
+                    </div>
+
+                    <div class="t-item">
+                        <div>
+                            <div class="t-itemTop">SECUNDARIA <span class="t-badge t-badge--soft">Cripto</span></div>
+                            <div class="t-itemSub">USDT — TQnTia...9p</div>
+                        </div>
+                        <button class="t-iconBtn" type="button" data-action="delete" aria-label="Eliminar">🗑</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section class="t-panel" id="historyPanel" role="tabpanel" aria-label="Historial">
+        <div class="t-grid t-grid--two">
+            <section class="t-card">
+                <h2 class="t-cardTitle">Filtrar historial</h2>
+
+                <div class="t-form">
+                    <div class="t-row2">
+                        <label class="t-field">
+                            <span>Tipo</span>
+                            <select id="histType">
+                                <option value="all">Todos</option>
+                                <option value="deposit">Depósito</option>
+                                <option value="withdraw">Retiro</option>
+                            </select>
+                        </label>
+
+                        <label class="t-field">
+                            <span>Estado</span>
+                            <select id="histStatus">
+                                <option value="all">Todos</option>
+                                <option value="completed">Completado</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="failed">Fallido</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label class="t-field">
+                        <span>Referencia / Hash</span>
+                        <input id="histQuery" type="text" placeholder="Ej: QNT-392814 / 0x..." />
+                    </label>
+
+                    <button class="t-cta t-cta--soft" id="applyFilterBtn" type="button">Aplicar filtro</button>
+                </div>
+            </section>
+
+            <section class="t-card">
+                <h2 class="t-cardTitle">Movimientos recientes</h2>
+
+                <div class="t-history" id="historyList">
+                    <div class="t-move" data-type="deposit" data-status="completed">
+                        <div class="t-moveL">
+                            <div class="t-moveTop">Depósito — Tarjeta <span class="t-dot t-dot--ok">Completado</span></div>
+                            <div class="t-moveSub">Ref: QNT-392814</div>
+                        </div>
+                        <div class="t-moveR">+ 120.00 USD</div>
+                    </div>
+
+                    <div class="t-move" data-type="withdraw" data-status="pending">
+                        <div class="t-moveL">
+                            <div class="t-moveTop">Retiro — Banco <span class="t-dot t-dot--wait">Pendiente</span></div>
+                            <div class="t-moveSub">Ref: QNT-882014</div>
+                        </div>
+                        <div class="t-moveR">- 60.00 USD</div>
+                    </div>
+
+                    <div class="t-move" data-type="deposit" data-status="completed">
+                        <div class="t-moveL">
+                            <div class="t-moveTop">Depósito — Cripto <span class="t-dot t-dot--ok">Completado</span></div>
+                            <div class="t-moveSub">Hash: 0x9a...21b</div>
+                        </div>
+                        <div class="t-moveR">+ 45.00 USD</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <div class="t-toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+
+<script src="src/public/assets/scripts/transfer.js"></script>
+</body>
+</html>
