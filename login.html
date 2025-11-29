@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantia — Iniciar sesión</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="src/public/assets/styles/login.css" />
+    <link rel="icon" href="src/public/favicon.ico" />
+</head>
+<body>
+
+<!-- Moneda decorativa fija -->
+<img class="coin-deco" src="/src/public/assets/images/moneda.png" alt="" aria-hidden="true" />
+
+<main class="login-layout">
+    <!-- Columna izquierda: formulario -->
+    <section class="auth-card" aria-labelledby="titulo-login">
+        <h1 id="titulo-login" class="auth-title">Iniciar sesión</h1>
+
+        <form class="auth-form" action="#" method="post" novalidate>
+            <label class="field">
+                <span class="label">Correo electrónico</span>
+                <input
+                        type="email"
+                        name="email"
+                        inputmode="email"
+                        autocomplete="email"
+                        placeholder="tu.correo@dominio.com"
+                        required
+                />
+            </label>
+
+            <label class="field">
+                <span class="label">Contraseña</span>
+                <input
+                        type="password"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="••••••••"
+                        required
+                />
+            </label>
+
+            <div class="form-row form-row--sm">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember" />
+                    <span>Recordar contraseña</span>
+                </label>
+
+                <a class="link" href="#">Restablecer contraseña</a>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+
+            <div class="divider">
+                <span>o</span>
+            </div>
+
+            <a class="btn btn-outline" href="#">Registrarse</a>
+
+            <p class="helper">continuar con Google</p>
+
+            <div class="actions-row">
+                <button type="button" class="chip chip-accent">Activar 2FA</button>
+                <button type="button" class="chip chip-muted">Cerrar sesión en todos los dispositivos</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Columna derecha: logo -->
+    <aside class="brand-card" aria-hidden="true">
+        <div class="brand-card__inner">
+            <img src="/src/public/assets/images/logo.png" class="brand-logo" alt="Logo de Quantia" />
+        </div>
+    </aside>
+</main>
+
+</body>
+</html>
