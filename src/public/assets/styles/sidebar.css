@@ -7,21 +7,21 @@ body {
 .sidebar {
     width: 240px;
     height: 100vh;
-    background: #1e1e2f;
+    background: #2DA88E;
     color: white;
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 20px;
+    padding-top: 30px;
     transition: all 0.3s ease;
     z-index: 1000;
 }
 
 .sidebar .logo {
-    text-align: center;
-    font-size: 22px;
+    width: 120px;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 25px;
-    font-weight: bold;
 }
 
 .sidebar .menu {
@@ -39,10 +39,12 @@ body {
     font-size: 18px;
     display: block;
     transition: 0.2s;
+    cursor: pointer;
+    padding: 10px;
 }
 
 .sidebar .menu li a:hover {
-    background: #35354a;
+    background: #56ae9b;
     border-radius: 6px;
 }
 
@@ -61,23 +63,24 @@ body {
     font-size: 20px;
 }
 
-.content {
-    padding: 30px;
-    transition: margin-left 0.3s ease;
-}
-
-@media (min-width: 769px) {
-    .content {
-        margin-left: 260px;
-    }
+.content-frame {
+    position: absolute;
+    left: 240px;
+    top: 0;
+    width: calc(100% - 240px);
+    height: 100vh;
+    border: none;
+    background: #f4f7fb;
+    transition: left 0.3s ease, width 0.3s ease;
 }
 
 @media (max-width: 768px) {
+
     .sidebar {
         left: -260px;
     }
 
-    .sidebar.active {
+    .sidebar.open {
         left: 0;
     }
 
@@ -85,7 +88,13 @@ body {
         display: block;
     }
 
-    .content {
-        margin-left: 0;
+    .content-frame {
+        left: 0;
+        width: 100%;
     }
+}
+
+.menu li a.active {
+    background: #ff77b7;
+    border-radius: 6px;
 }
