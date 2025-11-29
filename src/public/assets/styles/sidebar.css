@@ -54,7 +54,7 @@ body {
     left: 10px;
     top: 10px;
     z-index: 1500;
-    background: #1e1e2f;
+    background: #2DA88E;
     color: white;
     border: none;
     padding: 10px 14px;
@@ -95,6 +95,6 @@ body {
 }
 
 .menu li a.active {
-    background: #ff77b7;
+    background: #56ae9b;
     border-radius: 6px;
 }
