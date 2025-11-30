@@ -344,20 +344,20 @@ body{
 }
 
 .team-header{
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
 .team-title{
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 800;
     color: #111827;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .team-subtitle{
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.6;
     color: #4b5563;
     max-width: 800px;
     margin: 0 auto;
@@ -373,28 +373,40 @@ body{
 
 .team-card{
     background-color: #ffffff;
-    padding: 24px;
+    padding: 32px 24px 28px;
     border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    /* Comienza con una sombra más ligera y un borde transparente */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    border: 1px solid transparent; /* Borde transparente por defecto */
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .team-card:hover{
-    transform: translateY(-8px);
-    box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+    transform: translateY(-8px); /* Ligeramente menos elevación */
+    /* Al hacer hover, se activa el borde azul y una sombra más pronunciada */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    border: 1px solid #2971B8; /* Borde azul de Quantia al hacer hover */
 }
 
 .team-photo-wrapper{
-    width: 120px;
+    width: 120px; /* Aumentar el tamaño de la foto */
     height: 120px;
     border-radius: 999px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* ANILLO DE COLOR AZUL */
+    border: 4px solid #2971B8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+.team-card:hover .team-photo-wrapper {
+    border-width: 2px; /* Reducir el anillo al hacer hover */
+    transform: scale(1.02);
 }
 
 .team-photo{
@@ -402,7 +414,34 @@ body{
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease; /* Transición más suave */
+}
+
+.team-card:hover .team-photo{
+    transform: scale(1.08); /* Efecto zoom al hacer hover */
+}
+
+.team-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.25;
+    margin-top: 4px; /* Pequeño espacio extra después de la foto */
+}
+
+.team-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2971B8; /* Usar color de marca para el rol */
+    margin-bottom: 8px;
+}
+
+.team-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4b5563;
+    max-width: 240px; /* Limitar ancho para que el texto no se vea muy largo */
+    margin-bottom: 0;
 }
 
 /* ================= CONTACTO ================= */
@@ -414,19 +453,27 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    /* Aumentar la altura mínima para que la imagen se luzca */
+    min-height: 70vh;
+
+    /* Corrección de header fijo */
+    scroll-margin-top: 80px;
 }
 
 .contact-title{
     text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-    color: #111111;
-    margin-bottom: 32px;
+    font-size: 38px; /* Título más grande y con más impacto */
+    font-weight: 800;
+    color: #111827; /* Usar el color principal del texto */
+    margin-bottom: 40px;
+    line-height: 1.2;
+    /* Añadir una sombra de texto sutil para destacar sobre el fondo */
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .contact-wrapper{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Mantener alineado a la derecha */
 }
 
 .contact-card{
@@ -692,11 +739,14 @@ body{
     /* HERO */
     .hero{
         flex-direction: row;
-        padding: 60px 40px;
+        padding: 80px 80px 72px;
         background-position: center;
         text-align: left;
         align-items: center;
         gap: 32px;
+        display: flex;
+        /* AÑADE ESTO */
+        scroll-margin-top: 80px;
     }
 
     .hero-text{
@@ -711,7 +761,14 @@ body{
 
     /* ABOUT */
     .about{
-        padding: 56px 40px;
+        padding: 72px 80px 72px;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #ffffff;
+
+        /* AÑADE ESTO */
+        scroll-margin-top: 80px;
     }
 
     .about-grid{
@@ -795,7 +852,13 @@ body{
 
     /* TEAM */
     .team {
-        padding: 56px 40px 56px;
+        padding: 72px 80px 72px;
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+
+        /* AÑADE ESTO */
+        scroll-margin-top: 80px;
     }
 
     .team-grid{
@@ -845,7 +908,15 @@ body{
 
     /* CONTACT */
     .contact{
-        padding: 48px 20px 56px;
+        padding: 72px 80px 90px;
+        background-image: url("../images/fondo_2.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+
+        /* AÑADE ESTO */
+        scroll-margin-top: 80px;
     }
 
     .contact-card{
@@ -973,6 +1044,76 @@ body{
     }
 
     .team-card{
-        padding: 20px;
+        padding: 24px 16px 20px;
+    }
+}
+
+/* ================= TÉRMINOS Y CONDICIONES (legal-container) ================= */
+
+/* Contenedor principal de los términos */
+.legal-container {
+    padding: 72px 80px 72px; /* Espaciado superior, lateral e inferior */
+    max-width: 1200px; /* Centrar y limitar el ancho para mejor lectura */
+    margin: 0 auto;
+    background-color: #ffffff; /* Fondo blanco para alto contraste */
+    line-height: 1.7; /* Mejorar legibilidad con más altura de línea */
+    color: #374151; /* Color de texto gris oscuro */
+
+    /* Aseguramos que el anclaje funcione correctamente (solución de header fijo) */
+    scroll-margin-top: 80px;
+}
+
+/* Título principal */
+.legal-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px; /* Espacio antes de la fecha */
+}
+
+/* Fecha de actualización */
+.legal-date {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 40px; /* Espacio antes del primer punto */
+    font-style: italic;
+}
+
+/* Contenedor de cada punto (1., 2., 3., etc.) */
+.legal-section {
+    margin-bottom: 32px; /* Espacio entre cada punto principal */
+}
+
+/* Título de cada punto (ej. 1. Aceptación de los Términos) */
+.legal-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+    border-left: 4px solid #2971B8; /* Barra azul distintiva a la izquierda */
+    padding-left: 12px; /* Espacio entre la barra y el texto */
+    line-height: 1.2;
+}
+
+/* Párrafos dentro de cada sección */
+.legal-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4b5563;
+    padding-left: 16px; /* Para alinear con el texto del h2 */
+}
+
+/* Media query para móviles: reducir el padding */
+@media (max-width: 768px) {
+    .legal-container {
+        padding: 48px 20px 48px;
+    }
+
+    .legal-title {
+        font-size: 26px;
+    }
+
+    .legal-section h2 {
+        font-size: 18px;
     }
 }
