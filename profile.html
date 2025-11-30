@@ -71,13 +71,19 @@
                 <div class="row">
                     <label class="field field--full">
                         <span class="field__label">Email</span>
-                        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="usuario@gmail.com" />
+                        <input type="email" id="email" name="email" autocomplete="email" inputmode="email"
+                               placeholder="usuario@gmail.com" />
                         <small class="field__error" id="emailError"></small>
                     </label>
                 </div>
 
                 <div class="actions">
                     <button class="btn btn--ghost" id="logoutBtn" type="button">Cerrar sesión</button>
+
+                    <button class="btn btn--danger" id="deleteAccountBtn" type="button">
+                        Eliminar cuenta
+                    </button>
+
                     <button class="btn" id="editBtn" type="button">Editar</button>
                     <button class="btn btn--primary" id="saveBtn" type="submit" hidden>Guardar cambios</button>
                 </div>

@@ -18,7 +18,6 @@ let currentPage = 1;
 const itemsPerPage = 6;
 let filteredData = [...activityData];
 
-// Función para renderizar la tabla
 function renderTable() {
     const tbody = document.getElementById('activityTableBody');
     const start = (currentPage - 1) * itemsPerPage;

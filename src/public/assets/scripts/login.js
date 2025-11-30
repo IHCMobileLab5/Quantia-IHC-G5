@@ -1,9 +1,9 @@
 const API_BASE = "http://localhost:3000/api/v1";
 const USERS_URL = `${API_BASE}/users`;
 
-// Config “profe-friendly”
+//
 const MAX_ATTEMPTS = 3;
-const LOCK_MS = 60_000; // 1 min (cámbialo si quieres)
+const LOCK_MS = 60_000;
 let toastTimer = null;
 
 function $(sel) { return document.querySelector(sel); }
@@ -118,23 +118,21 @@ document.addEventListener("DOMContentLoaded", () => {
         setLoading(form, true);
 
         try {
-            // 1) Ver si existe usuario
             const user = await findUserByEmail(email);
 
             if (!user) {
-                // genérico (no damos pistas)
                 showToast({
                     type: "error",
                     title: "Acceso denegado",
-                    message: "Correo o contraseña incorrectos.",
-                    ms: 3000,
+                    message: "Correo y contraseña no válidos.",
+                    ms: 3200,
                 });
                 return;
             }
 
-            // 2) Bloqueo por intentos (simulado)
             const lockUntil = getLockUntil(email);
             const now = Date.now();
+
             if (lockUntil && lockUntil > now) {
                 showToast({
                     type: "error",
@@ -144,12 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 return;
             } else if (lockUntil && lockUntil <= now) {
-                // expiró bloqueo
+                // expiró el bloqueo
                 clearLock(email);
                 clearAttempts(email);
             }
 
-            // 3) Validar password (ojo: demo, porque json-server no encripta)
             if (String(user.password || "") !== password) {
                 const next = getAttempts(email) + 1;
                 setAttempts(email, next);
@@ -176,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // 4) OK: reset intentos + sesión
             clearAttempts(email);
             clearLock(email);
 

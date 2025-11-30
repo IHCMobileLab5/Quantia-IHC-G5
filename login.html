@@ -22,7 +22,7 @@
     <section class="auth-card" aria-labelledby="titulo-login">
         <h1 id="titulo-login" class="auth-title">Iniciar sesión</h1>
 
-        <form class="auth-form" novalidate>
+        <form id="loginForm" class="auth-form" novalidate>
             <label class="field">
                 <span class="label">Correo electrónico</span>
                 <input
@@ -52,11 +52,10 @@
                     <span>Recordar contraseña</span>
                 </label>
 
-
                 <a class="link" href="config.html">Restablecer contraseña</a>
             </div>
 
-            <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            <button id="loginSubmit" class="btn btn-primary" type="submit">Iniciar sesión</button>
 
             <div class="divider"><span>o</span></div>
 
@@ -69,6 +68,7 @@
                 <button type="button" class="chip chip-muted">Cerrar sesión en todos los dispositivos</button>
             </div>
         </form>
+
     </section>
 
     <aside class="brand-card" aria-hidden="true">
@@ -83,47 +83,27 @@
     </aside>
 </main>
 
-<script>
-    const API = "http://localhost:3000/api/v1";
-    const form = document.querySelector(".auth-form");
+<div id="toast" class="toast" data-type="success" hidden role="status" aria-live="polite">
+    <div class="toast__icon" aria-hidden="true">
+        <svg class="toast__svg i-success" viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <svg class="toast__svg i-error" viewBox="0 0 24 24" fill="none">
+            <path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M10.29 3.86l-7.4 12.81A2 2 0 0 0 4.62 20h14.76a2 2 0 0 0 1.73-3.33l-7.4-12.81a2 2 0 0 0-3.42 0z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </div>
 
-    const DASHBOARD_URL = new URL("dashboard.html", window.location.href).toString();
+    <div class="toast__content">
+        <div id="toastTitle" class="toast__title">Listo</div>
+        <div id="toastMsg" class="toast__msg"></div>
+    </div>
 
-    form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    <button id="toastClose" class="toast__close" type="button" aria-label="Cerrar">×</button>
+</div>
 
-        const emailInput = form.querySelector('input[name="email"]');
-        const passInput = form.querySelector('input[name="password"]');
-
-        const email = (emailInput?.value || "").trim();
-        const password = passInput?.value || "";
-
-        if (!email || !password) {
-            alert("Completa correo y contraseña.");
-            return;
-        }
-
-        try {
-            const url =
-                `${API}/users?email=${encodeURIComponent(email)}` +
-                `&password=${encodeURIComponent(password)}`;
-
-            const res = await fetch(url, { cache: "no-store" });
-            if (!res.ok) throw new Error("No se pudo conectar con la API (json-server).");
-
-            const users = await res.json();
-            if (!Array.isArray(users) || users.length === 0) {
-                throw new Error("Correo o contraseña incorrectos.");
-            }
-
-            localStorage.setItem("quantia_user", JSON.stringify(users[0]));
-
-
-            window.location.assign(DASHBOARD_URL);
-        } catch (err) {
-            alert(err?.message || "Error al iniciar sesión.");
-        }
-    });
-</script>
+<script src="src/public/assets/scripts/login.js" defer></script>
 </body>
 </html>

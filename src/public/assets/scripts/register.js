@@ -55,9 +55,6 @@ function setupPasswordToggles() {
     });
 }
 
-/* =========================
-   VALIDACIONES (tests)
-   ========================= */
 function isValidGmail(email) {
     const e = String(email || "").trim().toLowerCase();
     return /^[a-z0-9._%+-]+@gmail\.com$/.test(e);
