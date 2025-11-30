@@ -61,13 +61,39 @@
       "id": 8
     },
     {
-      "name": "schneider",
-      "email": "schneider@gmail.com",
-      "password": "Schneider123",
-      "createdAt": "2025-11-29T16:42:47.174Z",
+      "name": "asdasdas",
+      "email": "asdasdasd@gmail.com",
+      "password": "A123123123",
+      "createdAt": "2025-11-29T07:48:58.091Z",
       "verificationStatus": "PENDING",
       "verificationHint": "Simulado: se enviaría un correo de verificación.",
       "id": 9
+    },
+    {
+      "name": "Ale Dust",
+      "email": "alejus@gmail.com",
+      "password": "A123123123",
+      "createdAt": "2025-11-29T09:16:18.962Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 10,
+      "nombre": "Ale",
+      "apellido": "Dust",
+      "telefono": "988792014",
+      "dni": "75348749"
+    },
+    {
+      "name": "Carlos Lopez",
+      "email": "lopezc@gmail.com",
+      "password": "A123123123",
+      "createdAt": "2025-11-29T21:33:28.045Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 11,
+      "nombre": "Carlos",
+      "apellido": "Lopez",
+      "telefono": "988988999",
+      "dni": "33224422"
     }
   ]
 }
