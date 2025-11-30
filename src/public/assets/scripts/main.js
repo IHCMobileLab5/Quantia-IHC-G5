@@ -177,7 +177,6 @@ function setupSignupForm(supabaseClient) {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // --- VALIDACIÓN US001 ---
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
         if (!passwordRegex.test(password)) {
@@ -188,10 +187,7 @@ function setupSignupForm(supabaseClient) {
         } else {
             errorElement.textContent = '';
         }
-        // --- FIN VALIDACIÓN US001 ---
 
-
-        // --- Registro en Supabase ---
         const { error } = await supabaseClient.auth.signUp({
             email,
             password,
