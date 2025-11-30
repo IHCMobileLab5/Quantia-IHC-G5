@@ -3,7 +3,6 @@ const USERS_URL = `${API_BASE}/users`;
 
 let toastTimer = null;
 
-/* ===== Toast ===== */
 function toastIconSvg(type) {
     if (type === "error") {
         return `
@@ -61,7 +60,6 @@ function showToast({ title = "Listo", message = "", ms = 2400, type = "success" 
     toastTimer = setTimeout(hide, ms);
 }
 
-/* ===== Session ===== */
 function readSessionUser() {
     try {
         return JSON.parse(localStorage.getItem("quantia_user") || "null");
@@ -73,7 +71,6 @@ function saveSessionUser(user) {
     localStorage.setItem("quantia_user", JSON.stringify(user));
 }
 
-/* ===== Validations ===== */
 function splitName(fullName) {
     const t = String(fullName || "").trim().split(/\s+/).filter(Boolean);
     if (t.length === 0) return { nombre: "", apellido: "" };
@@ -94,7 +91,6 @@ function isValidPhone(phone) {
     return p === "" || /^\d{9}$/.test(p);
 }
 
-/* ===== Form helpers ===== */
 function setReadOnly(isReadOnly) {
     ["nombre", "apellido", "telefono", "dni", "email"].forEach((id) => {
         const el = document.getElementById(id);
@@ -127,7 +123,6 @@ function getFormValues() {
     };
 }
 
-/* ===== API ===== */
 async function fetchUserById(id) {
     const res = await fetch(`${USERS_URL}/${encodeURIComponent(id)}`, { cache: "no-store" });
     if (!res.ok) throw new Error("No se pudo leer tu perfil desde la API.");
@@ -158,10 +153,9 @@ async function patchUser(id, payload) {
     return res.json();
 }
 
-/* ===== UI Bind ===== */
 let sessionUser = readSessionUser();
-let originalSnapshot = null;   // { email, telefono }
-let pendingPayload = null;     // objeto que se guardará tras confirmar contraseña
+let originalSnapshot = null;
+let pendingPayload = null;
 let isEditing = false;
 let lastFocusEl = null;
 
@@ -199,7 +193,6 @@ function refreshPhoneCallout(user) {
     callout.hidden = phone.length > 0;
 }
 
-/* ===== Modal ===== */
 function openConfirmModal() {
     const m = document.getElementById("confirmModal");
     const p = document.getElementById("confirmPassword");
@@ -211,7 +204,6 @@ function openConfirmModal() {
     m.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
 
-    // foco seguro
     setTimeout(() => {
         if (p) {
             p.value = "";
@@ -230,13 +222,11 @@ function closeConfirmModal() {
     m.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
 
-    // devolver foco
     if (lastFocusEl && typeof lastFocusEl.focus === "function") {
         lastFocusEl.focus();
     }
 }
 
-/* ===== Edit Mode ===== */
 function startEditMode() {
     isEditing = true;
     setReadOnly(false);
@@ -255,7 +245,6 @@ function stopEditMode() {
     document.getElementById("editBtn")?.removeAttribute("hidden");
 }
 
-/* ===== Save Flow ===== */
 async function onSubmitProfile(e) {
     e.preventDefault();
 
@@ -272,7 +261,6 @@ async function onSubmitProfile(e) {
 
     const { nombre, apellido, telefono, dni, email } = getFormValues();
 
-    // Validaciones
     let ok = true;
     if (!nombre) { setFieldError("nombre", "El nombre es obligatorio."); ok = false; }
     if (!apellido) { setFieldError("apellido", "El apellido es obligatorio."); ok = false; }
@@ -292,8 +280,6 @@ async function onSubmitProfile(e) {
     const phoneChanged = telefono !== prevPhone;
     const emailChanged = email !== prevEmail;
 
-    // si no cambió NADA (incluye también nombre/apellido/dni comparando con lo ya pintado)
-    // por simplicidad: si no cambió teléfono/correo y el resto lo guardamos igual, validamos al menos algo cambió vs usuario actual:
     const currentName = `${String(sessionUser?.nombre ?? splitName(sessionUser?.name ?? "").nombre ?? "").trim()} ${String(sessionUser?.apellido ?? splitName(sessionUser?.name ?? "").apellido ?? "").trim()}`.trim();
     const newName = `${nombre} ${apellido}`.trim();
 
@@ -307,7 +293,6 @@ async function onSubmitProfile(e) {
         return;
     }
 
-    // correo único (si cambió)
     if (emailChanged) {
         const exists = await emailExistsForAnotherUser(email, sessionUser.id);
         if (exists) {
@@ -323,10 +308,9 @@ async function onSubmitProfile(e) {
         telefono,
         dni,
         email,
-        name: newName, // compat
+        name: newName,
     };
 
-    // ✅ TEST: si cambia teléfono o email => pedir contraseña
     if (phoneChanged || emailChanged) {
         pendingPayload = {
             ...willUpdate,
@@ -336,7 +320,6 @@ async function onSubmitProfile(e) {
         return;
     }
 
-    // Cambios NO sensibles => guarda directo
     await doPatchAndRefresh(willUpdate, { showVerifyToast: false });
 }
 
@@ -415,7 +398,6 @@ async function onConfirmSave() {
     }
 }
 
-/* ===== Init ===== */
 document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("backBtn")?.addEventListener("click", () => window.history.back());
 
@@ -453,7 +435,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("confirmSaveBtn")?.addEventListener("click", onConfirmSave);
 
-    // Click fuera
     document.getElementById("confirmModal")?.addEventListener("click", (ev) => {
         if (ev.target?.id === "confirmModal") {
             pendingPayload = null;
@@ -461,7 +442,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    // Escape
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
             pendingPayload = null;
