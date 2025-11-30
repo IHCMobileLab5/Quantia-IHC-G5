@@ -22,7 +22,7 @@
     <section class="auth-card" aria-labelledby="titulo-login">
         <h1 id="titulo-login" class="auth-title">Iniciar sesión</h1>
 
-        <form class="auth-form" novalidate>
+        <form id="loginForm" class="auth-form" novalidate>
             <label class="field">
                 <span class="label">Correo electrónico</span>
                 <input
@@ -55,7 +55,7 @@
                 <a class="link" href="config.html">Restablecer contraseña</a>
             </div>
 
-            <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            <button id="loginSubmit" class="btn btn-primary" type="submit">Iniciar sesión</button>
 
             <div class="divider"><span>o</span></div>
 
@@ -68,6 +68,7 @@
                 <button type="button" class="chip chip-muted">Cerrar sesión en todos los dispositivos</button>
             </div>
         </form>
+
     </section>
 
     <aside class="brand-card" aria-hidden="true">
@@ -84,11 +85,9 @@
 
 <div id="toast" class="toast" data-type="success" hidden role="status" aria-live="polite">
     <div class="toast__icon" aria-hidden="true">
-        <!-- success icon -->
         <svg class="toast__svg i-success" viewBox="0 0 24 24" fill="none">
             <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
-        <!-- error icon -->
         <svg class="toast__svg i-error" viewBox="0 0 24 24" fill="none">
             <path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
             <path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
