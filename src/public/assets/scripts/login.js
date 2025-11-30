@@ -3,7 +3,7 @@ const USERS_URL = `${API_BASE}/users`;
 
 // Config “profe-friendly”
 const MAX_ATTEMPTS = 3;
-const LOCK_MS = 60_000; // 1 min (cámbialo si quieres)
+const LOCK_MS = 60_000; // 1 min
 let toastTimer = null;
 
 function $(sel) { return document.querySelector(sel); }
@@ -13,7 +13,11 @@ function showToast({ title = "Listo", message = "", ms = 2600, type = "success" 
     const tTitle = $("#toastTitle");
     const tMsg = $("#toastMsg");
     const tClose = $("#toastClose");
-    if (!toast || !tTitle || !tMsg || !tClose) return;
+    if (!toast || !tTitle || !tMsg || !tClose) {
+        // Fallback si no existe toast en el HTML
+        if (type === "error") alert(message || title);
+        return;
+    }
 
     toast.dataset.type = type;
     tTitle.textContent = title;
@@ -95,8 +99,36 @@ function setLoading(form, isLoading) {
     btn.textContent = isLoading ? "VALIDANDO..." : "Iniciar sesión";
 }
 
+function registerFailedAttempt(email) {
+    const next = getAttempts(email) + 1;
+    setAttempts(email, next);
+
+    const left = MAX_ATTEMPTS - next;
+
+    if (next >= MAX_ATTEMPTS) {
+        setLockUntil(email, Date.now() + LOCK_MS);
+        showToast({
+            type: "error",
+            title: "Cuenta bloqueada",
+            message: `Has superado ${MAX_ATTEMPTS} intentos. Bloqueo temporal por ${msToHuman(LOCK_MS)}.`,
+            ms: 4200,
+        });
+        return { locked: true, left: 0 };
+    }
+
+    showToast({
+        type: "error",
+        title: "Acceso denegado",
+        message: `Correo o contraseña incorrectos. Te quedan ${left} intento(s).`,
+        ms: 3600,
+    });
+
+    return { locked: false, left };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const form = $("#loginForm");
+    // ✅ Tu HTML usa class="auth-form" (no #loginForm)
+    const form = $(".auth-form");
     if (!form) return;
 
     form.addEventListener("submit", async (e) => {
@@ -115,68 +147,40 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // ✅ Bloqueo antes de validar (si está bloqueado, ni consultamos)
+        const lockUntil = getLockUntil(email);
+        const now = Date.now();
+        if (lockUntil && lockUntil > now) {
+            showToast({
+                type: "error",
+                title: "Cuenta bloqueada",
+                message: `Demasiados intentos. Intenta de nuevo en ${msToHuman(lockUntil - now)}.`,
+                ms: 3500,
+            });
+            return;
+        } else if (lockUntil && lockUntil <= now) {
+            clearLock(email);
+            clearAttempts(email);
+        }
+
         setLoading(form, true);
 
         try {
-            // 1) Ver si existe usuario
             const user = await findUserByEmail(email);
 
+            // ✅ Caso 1: email no existe → también cuenta intento (mensaje genérico)
             if (!user) {
-                // genérico (no damos pistas)
-                showToast({
-                    type: "error",
-                    title: "Acceso denegado",
-                    message: "Correo o contraseña incorrectos.",
-                    ms: 3000,
-                });
+                registerFailedAttempt(email);
                 return;
             }
 
-            // 2) Bloqueo por intentos (simulado)
-            const lockUntil = getLockUntil(email);
-            const now = Date.now();
-            if (lockUntil && lockUntil > now) {
-                showToast({
-                    type: "error",
-                    title: "Cuenta bloqueada",
-                    message: `Demasiados intentos. Intenta de nuevo en ${msToHuman(lockUntil - now)}.`,
-                    ms: 3500,
-                });
-                return;
-            } else if (lockUntil && lockUntil <= now) {
-                // expiró bloqueo
-                clearLock(email);
-                clearAttempts(email);
-            }
-
-            // 3) Validar password (ojo: demo, porque json-server no encripta)
+            // ✅ Caso 2: password incorrecta → cuenta intento
             if (String(user.password || "") !== password) {
-                const next = getAttempts(email) + 1;
-                setAttempts(email, next);
-
-                const left = MAX_ATTEMPTS - next;
-
-                if (next >= MAX_ATTEMPTS) {
-                    setLockUntil(email, Date.now() + LOCK_MS);
-
-                    showToast({
-                        type: "error",
-                        title: "Cuenta bloqueada",
-                        message: `Has superado ${MAX_ATTEMPTS} intentos. Bloqueo temporal por ${msToHuman(LOCK_MS)}.`,
-                        ms: 4200,
-                    });
-                } else {
-                    showToast({
-                        type: "error",
-                        title: "Acceso denegado",
-                        message: `Correo o contraseña incorrectos. Te quedan ${left} intento(s).`,
-                        ms: 3600,
-                    });
-                }
+                registerFailedAttempt(email);
                 return;
             }
 
-            // 4) OK: reset intentos + sesión
+            // ✅ Caso OK
             clearAttempts(email);
             clearLock(email);
 
@@ -192,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 window.location.href = "dashboard.html";
             }, 1600);
-
         } catch (err) {
             showToast({
                 type: "error",

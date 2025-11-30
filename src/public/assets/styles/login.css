@@ -542,6 +542,15 @@ input[type="password"]:focus{
     color: rgba(15,23,42,.90);
 }
 
+.toast__svg {
+    display: block;
+}
+
+.toast__svg path {
+    stroke: currentColor;
+}
+
+
 @media (max-width: 560px){
     .toast{
         right: 14px;
