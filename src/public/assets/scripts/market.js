@@ -1,4 +1,3 @@
-// ===== Topbar / Drawer / Theme / Lang =====
 const backBtn = document.getElementById("backBtn");
 const themeBtn = document.getElementById("themeBtn");
 const menuBtn = document.getElementById("menuBtn");
@@ -78,7 +77,6 @@ drawerLangBtn?.addEventListener("click", () => {
     closeDrawer();
 });
 
-// ===== Nav routing + active =====
 function normalizeToFile(href) {
     try {
         const u = new URL(href, window.location.href);
@@ -102,7 +100,6 @@ function setActiveByHref(href) {
         if (normalizeToFile(b.getAttribute("data-href")) === current) b.classList.add("is-active");
     });
 
-    // Si llaman setActiveByHref manual, también marca ese target
     const top = document.querySelector(`.nav__btn[data-href="${href}"]`);
     const mob = document.querySelector(`.drawer__btn[data-href="${href}"]`);
     top?.classList.add("is-active");
@@ -132,10 +129,8 @@ window.addEventListener("resize", () => {
     if (!isMobile()) closeDrawer();
 });
 
-// marcar activo al cargar (Market)
 setActiveByHref("market.html");
 
-// ===== Tool Tabs (SL / TP / LEV / DOM) =====
 const tabs = Array.from(document.querySelectorAll(".m-tab"));
 const orderPanel = document.getElementById("orderPanel");
 const levPanel = document.getElementById("levPanel");
@@ -170,7 +165,6 @@ tabs.forEach((t) => {
     t.addEventListener("click", () => setActiveTab(t.dataset.tab));
 });
 
-// ===== Order Form (Buy/Sell + SL/TP + Metrics) =====
 const buyBtn = document.getElementById("buyBtn");
 const sellBtn = document.getElementById("sellBtn");
 
@@ -194,7 +188,7 @@ const marginVal = document.getElementById("marginVal");
 const confirmBtn = document.getElementById("confirmBtn");
 const toast = document.getElementById("toast");
 
-let side = "buy"; // buy | sell
+let side = "buy";
 function setSide(next) {
     side = next;
     buyBtn?.classList.toggle("is-active", side === "buy");
@@ -287,7 +281,6 @@ confirmBtn?.addEventListener("click", () => {
     showToast(`Orden ${side === "buy" ? "de compra" : "de venta"} enviada ✓`);
 });
 
-// ===== Leverage panel demo =====
 const levRange = document.getElementById("levRange");
 const levOut = document.getElementById("levOut");
 const levMargin = document.getElementById("levMargin");
@@ -311,8 +304,6 @@ function updateLev() {
 
 levRange?.addEventListener("input", updateLev);
 
-// ===== Chart click => portfolio-performance.html =====
-// IMPORTANTE: asegura que el contenedor del canvas tenga id="chartStage"
 const chartStage = document.getElementById("chartStage") || document.querySelector(".m-chartStage");
 if (chartStage) {
     chartStage.classList.add("is-clickable");
@@ -331,7 +322,6 @@ if (chartStage) {
     });
 }
 
-// ===== Draw candlestick (ANIMADO, no quieto) =====
 const canvas = document.getElementById("chart");
 const ctx = canvas?.getContext?.("2d");
 
@@ -414,7 +404,6 @@ function drawChart() {
         ctx.stroke();
     }
 
-    // candles
     const gap = 6;
     const cw = Math.max(
         6,
@@ -425,7 +414,6 @@ function drawChart() {
         const x = pad + i * (cw + gap);
         const isUp = c.close >= c.open;
 
-        // wick
         ctx.strokeStyle = isUp ? "#18b576" : "#ef4444";
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -433,7 +421,6 @@ function drawChart() {
         ctx.lineTo(x + cw / 2, y(c.low));
         ctx.stroke();
 
-        // body
         const top = y(Math.max(c.open, c.close));
         const bot = y(Math.min(c.open, c.close));
         const bh = Math.max(3, bot - top);
@@ -442,7 +429,6 @@ function drawChart() {
         ctx.fillRect(x, top, cw, bh);
     });
 
-    // OHLC (última vela)
     const last = candles[candles.length - 1];
     const oEl = document.getElementById("oVal");
     const lEl = document.getElementById("lVal");
@@ -468,9 +454,8 @@ function startChartAnimation() {
     }, 900);
 }
 
-// ===== init =====
 updateMetrics();
 updateLev();
-setActiveTab("sl"); // empieza como tu 2da imagen (Stop-Loss activo)
+setActiveTab("sl");
 startChartAnimation();
 window.addEventListener("resize", () => drawChart());
