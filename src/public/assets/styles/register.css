@@ -9,8 +9,8 @@ html, body { height: 100%; }
     --ink: #0f172a;
     --muted: #64748b;
 
-    --accent: #f08a2b;          /* naranja líneas + iconos */
-    --btn: #0b1220;             /* botón negro/azulado */
+    --accent: #f08a2b;
+    --btn: #0b1220;
 
     --card: rgba(255,255,255,.92);
     --cardBorder: rgba(15,23,42,.06);
@@ -30,7 +30,6 @@ body{
             radial-gradient(900px 520px at 15% 0%, var(--bgA) 0%, #eef8f7 45%, var(--bgB) 100%);
 }
 
-/* ===== Detalle esquina superior izquierda (como tu versión anterior) ===== */
 body::before{
     content:"";
     position: fixed;
@@ -95,8 +94,6 @@ body::after{
     filter: drop-shadow(0 10px 18px rgba(0,0,0,.16));
 }
 
-
-/* ===== Layout ===== */
 .page{
     min-height: 100svh;
     display: grid;
@@ -113,7 +110,6 @@ body::after{
     padding: 34px 40px 30px;
 }
 
-/* ===== Avatar (sin círculo extra) ===== */
 .avatar{
     display: grid;
     place-items: center;
@@ -125,7 +121,6 @@ body::after{
     height: 92px;
     object-fit: cover;
     display: block;
-    /* sin fondo extra, solo un shadow ligero */
     filter: drop-shadow(0 10px 18px rgba(2,6,23,.14));
 }
 
@@ -164,7 +159,6 @@ body::after{
     height: 18px;
 }
 
-/* Inputs en “línea” como el mockup */
 .field__input{
     width: 100%;
     border: 0;
@@ -172,20 +166,18 @@ body::after{
     background: transparent;
     color: var(--ink);
     font-size: 15.5px;
-    padding: 2px 44px 2px 0; /* espacio para el ojo */
+    padding: 2px 44px 2px 0;
 }
 
 .field__input::placeholder{
     color: rgba(100,116,139,.95);
 }
 
-/* Focus bonito y pro */
 .field:focus-within{
     border-bottom-color: var(--accent);
     box-shadow: 0 10px 0 -9px rgba(240,138,43,.45);
 }
 
-/* ===== Ojo (alineado igual para ambos campos) ===== */
 .field--with-eye .field__input{
     padding-right: 46px;
 }
@@ -213,7 +205,6 @@ body::after{
     height: 20px;
 }
 
-/* Estado: hidden (por defecto) muestra “closed” */
 .eye .eye-open{ display: none; }
 .eye .eye-closed{ display: block; }
 
@@ -264,10 +255,6 @@ body::after{
     .title{ font-size: 22px; }
     .avatar-img{ width: 86px; height: 86px; }
 }
-/* =========================
-   TOAST (mensaje pro) - ÚNICO
-========================= */
-
 .toast{
     position: fixed;
     right: 22px;
@@ -281,7 +268,6 @@ body::after{
     border-radius: 14px;
     z-index: 9999;
 
-    /* glass */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
@@ -308,7 +294,6 @@ body::after{
     transition: transform .18s ease, opacity .18s ease;
 }
 
-/* Tipos */
 .toast[data-type="success"]{
     background: rgba(16,185,129,.14);
     border-color: rgba(16,185,129,.28);
@@ -324,7 +309,6 @@ body::after{
     border-color: rgba(59,130,246,.22);
 }
 
-/* Ícono: cambia por tipo */
 .toast__icon{
     width: 34px;
     height: 34px;
@@ -340,7 +324,7 @@ body::after{
 .toast__svg{
     width: 20px;
     height: 20px;
-    color: rgba(15,23,42,.70); /* default */
+    color: rgba(15,23,42,.70);
 }
 
 .toast[data-type="success"] .toast__icon{
@@ -361,7 +345,6 @@ body::after{
 }
 .toast[data-type="info"] .toast__svg{ color: #3b82f6; }
 
-/* Texto */
 .toast__content{ flex: 1; }
 .toast__title{
     font-size: 14px;
@@ -376,7 +359,6 @@ body::after{
     line-height: 1.25;
 }
 
-/* Cerrar */
 .toast__close{
     width: 32px;
     height: 32px;

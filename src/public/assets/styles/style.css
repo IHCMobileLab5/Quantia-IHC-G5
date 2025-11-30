@@ -918,7 +918,6 @@ body{
         border-radius: 6px;
     }
 
-    /* TEAM */
     .team {
         padding: 48px 20px 48px;
     }
@@ -929,7 +928,6 @@ body{
     }
 }
 
-/* ====== MÓVILES (max 480px) ====== */
 @media (max-width: 480px){
 
     .hero-text h1{
@@ -967,7 +965,7 @@ body{
         padding-bottom: 45px;
     }
 
-    /* TEAM */
+
     .team {
         padding: 40px 16px 40px;
     }

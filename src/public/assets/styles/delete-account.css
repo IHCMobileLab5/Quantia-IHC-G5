@@ -1,4 +1,3 @@
-/* ===== Base ===== */
 * {
     margin: 0;
     padding: 0;
@@ -34,12 +33,10 @@ body {
     position: relative;
 }
 
-/* ✅ (NEW) cuando el modal está abierto, bloquea scroll */
 body.modal-open{
     overflow: hidden;
 }
 
-/* Decorative image */
 .sun-deco {
     position: absolute;
     top: 0;
@@ -53,7 +50,6 @@ body.modal-open{
     pointer-events: none;
 }
 
-/* Layout */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -93,7 +89,6 @@ h1 {
     letter-spacing: .2px;
 }
 
-/* Alert boxes */
 .alert-box {
     background: var(--card);
     padding: 18px 22px;
