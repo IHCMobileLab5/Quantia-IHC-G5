@@ -1,7 +1,6 @@
 const API_BASE = "http://localhost:3000/api/v1";
 const USERS_URL = `${API_BASE}/users`;
 
-/* ===== Session ===== */
 function readSessionUser() {
     try { return JSON.parse(localStorage.getItem("quantia_user") || "null"); }
     catch { return null; }
@@ -10,7 +9,6 @@ function readSessionUser() {
 let sessionUser = readSessionUser();
 let userFresh = null;
 
-/* ===== 2FA ===== */
 function get2faKey(userId) { return `quantia_2fa_${userId}`; }
 
 function generate6DigitCode() {
@@ -34,7 +32,6 @@ function is2faValid(userId, inputCode) {
     return { ok: true };
 }
 
-/* ===== API ===== */
 async function fetchUserById(id) {
     const res = await fetch(`${USERS_URL}/${encodeURIComponent(id)}`, { cache: "no-store" });
     if (!res.ok) throw new Error("No se pudo obtener tu usuario.");
@@ -62,7 +59,6 @@ function clearSessionAndGoLogin() {
     window.location.href = "login.html";
 }
 
-/* ===== Toast ===== */
 let toastTimer = null;
 function showToast(title, message, ms = 2200) {
     const toast = document.getElementById("toast");
@@ -98,9 +94,8 @@ function modalClose(modalEl) {
     document.body.classList.remove("modal-open");
 }
 
-/* ===== Init ===== */
 document.addEventListener("DOMContentLoaded", async () => {
-    // Elements
+
     const backBtn = document.getElementById("backBtn");
     const balanceValue = document.getElementById("balanceValue");
 
@@ -119,10 +114,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const cancelPassBtn = document.getElementById("cancelPassBtn");
     const confirmPassBtn = document.getElementById("confirmPassBtn");
 
-    // Important: ocultarlo al cargar (por si CSS lo deja visible)
     if (passModal) passModal.style.display = "none";
 
-    // Guard session
     if (!sessionUser?.id) {
         window.location.href = "login.html";
         return;
@@ -130,7 +123,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     backBtn?.addEventListener("click", () => window.history.back());
 
-    // Load user
     try {
         userFresh = await fetchUserById(sessionUser.id);
         balanceValue.textContent = String(getUserBalance(userFresh));
@@ -144,37 +136,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast("Error", err?.message || "No se pudo cargar tu información.", 2600);
     }
 
-    // Delete enabled only when checkbox
     function updateDeleteBtnState() {
         deleteBtn.disabled = !confirmCheck.checked;
     }
     confirmCheck?.addEventListener("change", updateDeleteBtnState);
     updateDeleteBtnState();
 
-    // Open generate modal
     genCodeBtn?.addEventListener("click", () => {
         passError.textContent = "";
         passInput.value = "";
         modalOpen(passModal, passInput);
     });
 
-    // ✅ Cancel closes modal
     cancelPassBtn?.addEventListener("click", (e) => {
         e.preventDefault();
         modalClose(passModal);
     });
 
-    // Click outside closes
     passModal?.addEventListener("click", (ev) => {
         if (ev.target === passModal) modalClose(passModal);
     });
 
-    // ESC closes
     document.addEventListener("keydown", (e) => {
         if (!passModal.hidden && e.key === "Escape") modalClose(passModal);
     });
 
-    // Confirm password => generate code + close modal
     confirmPassBtn?.addEventListener("click", async (e) => {
         e.preventDefault();
         passError.textContent = "";
@@ -246,7 +232,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // ✅ Bloquear UI y mostrar despedida 5s
         deleteBtn.disabled = true;
         genCodeBtn.disabled = true;
         confirmCheck.disabled = true;
@@ -257,9 +242,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         setTimeout(async () => {
             try {
                 await deleteUser(sessionUser.id);
-                clearSessionAndGoLogin(); // te manda a login.html
+                clearSessionAndGoLogin();
             } catch (err) {
-                // Si falla, re-habilita UI
                 showToast("Error", err?.message || "No se pudo eliminar.", 2600);
 
                 deleteBtn.disabled = !confirmCheck.checked;
@@ -269,5 +253,4 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }, 5000);
     });
-
 });
