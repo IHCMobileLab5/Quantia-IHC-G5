@@ -3,40 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Cuenta</title>
+    <title>Quantia — Eliminar Cuenta</title>
     <link rel="stylesheet" href="src/public/assets/styles/delete-account.css">
 </head>
 <body>
 
-<img src="src/public/assets/images/img.png" class="sun-deco">
+<img src="src/public/assets/images/img.png" class="sun-deco" alt="" aria-hidden="true">
 
 <div class="container">
     <div class="header">
-        <span class="back" onclick="goBack()">
+        <button class="back" id="backBtn" type="button" aria-label="Atrás">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-        </span>
+        </button>
         <h1>ELIMINAR CUENTA</h1>
     </div>
 
     <div class="alert-box">
-        <img src="src/public/assets/images/delete.png" class="alert-icon">
+        <img src="src/public/assets/images/delete.png" class="alert-icon" alt="" aria-hidden="true">
         <p>Tu saldo debe ser cero antes de eliminar tu cuenta</p>
-        <strong>Saldo: 0</strong>
+        <strong>Saldo: <span id="balanceValue">—</span></strong>
     </div>
 
     <div class="alert-box">
-        <img src="src/public/assets/images/delete.png" class="alert-icon">
+        <img src="src/public/assets/images/delete.png" class="alert-icon" alt="" aria-hidden="true">
         <p>
             Al eliminar tu cuenta, tu información personal se borrará permanentemente
-            tras el periodo legal de retención
+            tras el periodo legal de retención.
         </p>
     </div>
 
-    <label class="input-label">Código 2FA</label>
-    <input type="text" class="input" placeholder="Código 2FA">
+    <!-- 2FA -->
+    <div class="row-2fa">
+        <div class="col">
+            <label class="input-label" for="codeInput">Código 2FA</label>
+            <input
+                    type="text"
+                    class="input"
+                    id="codeInput"
+                    placeholder="Ingresa tu código"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    maxlength="6"
+            />
+            <small class="helper" id="codeHint">El código vence en 2 minutos.</small>
+            <small class="error" id="codeError"></small>
+        </div>
+
+        <div class="col col-btn">
+            <button class="gen-btn" id="genCodeBtn" type="button">Generar código</button>
+            <small class="helper" id="genHint"></small>
+        </div>
+    </div>
 
     <label class="checkbox-wrapper">
         <input type="checkbox" id="confirmDelete">
@@ -44,9 +64,40 @@
     </label>
 
     <button class="delete-btn" id="deleteBtn" disabled>ELIMINAR CUENTA</button>
-
 </div>
 
-<script src="src/public/assets/scripts/delete-account.js"></script>
+<!-- Modal contraseña para generar 2FA -->
+<div class="modal" id="passModal" hidden aria-hidden="true">
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="passTitle" tabindex="-1">
+        <h2 class="modal__title" id="passTitle">Confirma tu contraseña</h2>
+        <p class="modal__subtitle">Para generar el código 2FA, ingresa tu contraseña actual.</p>
+
+        <label class="modal__field">
+            <span>Contraseña</span>
+            <input
+                    type="password"
+                    id="passInput"
+                    class="input"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+            />
+            <small class="error" id="passError"></small>
+        </label>
+
+        <div class="modal__actions">
+            <button class="btn-ghost" id="cancelPassBtn" type="button">Cancelar</button>
+            <button class="btn-primary" id="confirmPassBtn" type="button">Generar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast simple -->
+<div class="toast" id="toast" hidden role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast__title" id="toastTitle">Listo</div>
+    <div class="toast__msg" id="toastMsg">Mensaje</div>
+    <button class="toast__close" id="toastClose" type="button" aria-label="Cerrar">✕</button>
+</div>
+
+<script src="src/public/assets/scripts/delete-account.js" defer></script>
 </body>
 </html>

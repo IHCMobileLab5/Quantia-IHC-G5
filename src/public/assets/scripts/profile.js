@@ -482,6 +482,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast({ title: "Acción rápida", message: "Próximamente 👀", type: "info", ms: 1600 });
     });
 
+    document.getElementById("deleteAccountBtn")?.addEventListener("click", () => {
+        window.location.href = "delete-account.html";
+    });
+
     document.getElementById("logoutBtn")?.addEventListener("click", () => {
         localStorage.removeItem("quantia_user");
         showToast({ title: "Sesión cerrada", message: "Hasta pronto.", type: "success", ms: 1200 });

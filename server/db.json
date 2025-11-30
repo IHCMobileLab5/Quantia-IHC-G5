@@ -8,13 +8,6 @@
       "id": 1
     },
     {
-      "nombre": "milenka",
-      "email": "gatita@gmail.com",
-      "password": "12345678",
-      "createdAt": "2025-11-29T06:33:45.463Z",
-      "id": 2
-    },
-    {
       "nombre": "Carlos",
       "email": "aaa@gmail.com",
       "password": "12312312321",
@@ -59,15 +52,6 @@
       "verificationStatus": "PENDING",
       "verificationHint": "Simulado: se enviaría un correo de verificación.",
       "id": 8
-    },
-    {
-      "name": "asdasdas",
-      "email": "asdasdasd@gmail.com",
-      "password": "A123123123",
-      "createdAt": "2025-11-29T07:48:58.091Z",
-      "verificationStatus": "PENDING",
-      "verificationHint": "Simulado: se enviaría un correo de verificación.",
-      "id": 9
     },
     {
       "name": "Ale Dust",
