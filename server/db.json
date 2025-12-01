@@ -78,6 +78,15 @@
       "apellido": "Lopez",
       "telefono": "988988999",
       "dni": "33224422"
+    },
+    {
+      "name": "ricardo",
+      "email": "ricardo22@gmail.com",
+      "password": "aeiou123",
+      "createdAt": "2025-11-30T19:22:08.780Z",
+      "verificationStatus": "PENDING",
+      "verificationHint": "Simulado: se enviaría un correo de verificación.",
+      "id": 12
     }
   ]
 }
