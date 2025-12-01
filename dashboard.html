@@ -83,12 +83,32 @@
     </section>
 </main>
 
-<button class="fab fab--chat" type="button" aria-label="Chat" title="Chat">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="b1" d="M21 14a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"></path>
-        <circle class="b2" cx="16.5" cy="15.5" r="3.2"></circle>
-    </svg>
-</button>
+<div class="voice-wrapper">
+    <div id="voiceTooltip" class="voice-tooltip">🎤 Escuchando...</div>
+    <button class="fab fab--voice" id="voiceBtn" type="button" aria-label="Asistente de voz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+        </svg>
+    </button>
+    <span class="voice-label">Asistente de Voz<br>Presione para hablar</span>
+</div>
+
+<div id="aiCard" class="ai-card">
+    <div class="ai-header">
+        <div class="ai-icon-circle">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 5L6 9H2v6h4l5 4V5zM15.5 12c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </div>
+        <button id="closeAiCard" class="ai-close">✕</button>
+    </div>
+    <div class="ai-content">
+        <p id="aiResponseText">Hola, soy Quantia. Pregúntame sobre el estado de tu portafolio.</p>
+    </div>
+    <div class="ai-actions" id="aiActions">
+    </div>
+</div>
 
 <button class="fab fab--help" type="button" aria-label="Ayuda" title="Ayuda">
     <svg viewBox="0 0 24 24" aria-hidden="true">
